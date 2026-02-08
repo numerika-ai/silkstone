@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>City Guesthouse Zgorzelec — Investment Opportunity | SilkStone Estates</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--black:#0a0a0a;--white:#ffffff;--gray-50:#fafafa;--gray-100:#f5f5f5;--gray-200:#e5e5e5;--gray-400:#a3a3a3;--gray-600:#525765;--gray-800:#262626}
+html{scroll-behavior:smooth}
+body{font-family:'Montserrat',sans-serif;background:var(--white);color:var(--gray-800);line-height:1.7;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Montserrat',sans-serif;font-weight:600}
+.lang-en .pl,.lang-pl .en{display:none!important}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px;border-bottom:1px solid var(--gray-200)}
+nav .logo{display:flex;align-items:center;gap:.8rem}
+nav .logo img{height:50px;width:auto}
+nav ul{list-style:none;display:flex;gap:1.8rem}
+nav ul li a{color:var(--gray-600);text-decoration:none;font-size:.8rem;text-transform:uppercase;letter-spacing:1.5px;font-weight:500;transition:color .3s}
+nav ul li a:hover{color:var(--black)}
+.lang-btn{background:none;border:1px solid var(--gray-800);color:var(--gray-800);padding:6px 16px;font-size:.75rem;letter-spacing:2px;cursor:pointer;text-transform:uppercase;transition:all .3s;font-family:'Montserrat',sans-serif;font-weight:500}
+.lang-btn:hover{background:var(--black);color:var(--white)}
+.nav-links{display:flex;align-items:center;gap:1.8rem}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.hamburger span{display:block;width:24px;height:2px;background:var(--black);transition:all .3s}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:var(--white);border-bottom:1px solid var(--gray-200);padding:1.5rem 2rem;z-index:999}
+.mobile-menu.active{display:block}
+.mobile-menu ul{list-style:none;display:flex;flex-direction:column;gap:1rem}
+.mobile-menu ul li a{color:var(--gray-600);text-decoration:none;font-size:.9rem;text-transform:uppercase;letter-spacing:1.5px;font-weight:500}
+@media(max-width:768px){nav ul.desktop-nav{display:none}.hamburger{display:flex}}
+
+/* HERO */
+.hero{min-height:100vh;background:url('https://2s-e.pl/wp-content/uploads/2025/09/93976571_raw.webp') center/cover no-repeat;display:flex;align-items:center;justify-content:center;text-align:center;position:relative}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,255,255,.45),rgba(255,255,255,.85))}
+.hero-content{position:relative;z-index:1;max-width:800px;padding:2rem}
+.hero h1{font-size:clamp(2.2rem,5vw,4rem);color:var(--black);margin-bottom:.5rem;letter-spacing:3px;font-weight:700}
+.hero .subtitle{font-size:clamp(1rem,2.5vw,1.4rem);color:var(--gray-600);margin-bottom:1rem;font-weight:500;letter-spacing:1px}
+.hero .tagline{color:var(--gray-600);font-size:clamp(.85rem,1.5vw,.95rem);max-width:600px;margin:0 auto 2rem;font-weight:300;line-height:1.8}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:1;animation:bounce 2s infinite}
+.scroll-hint span{display:block;width:1px;height:40px;background:var(--gray-400);margin:0 auto;opacity:.5}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(10px)}}
+
+/* VIDEO SECTION */
+.video-section{padding:5rem 2rem;background:var(--gray-50)}
+.video-wrapper{max-width:900px;margin:0 auto;position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:4px;box-shadow:0 4px 20px rgba(0,0,0,.08)}
+.video-wrapper iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+
+/* SECTIONS */
+section{padding:clamp(3rem,6vw,5rem) 2rem}
+.section-light{background:var(--white)}
+.section-alt{background:var(--gray-50)}
+.container{max-width:1200px;margin:0 auto}
+.section-title{text-align:center;margin-bottom:3rem}
+.section-title h2{font-size:clamp(1.5rem,3vw,2.2rem);color:var(--black);margin-bottom:.5rem;font-weight:600;letter-spacing:1px}
+.section-title .line{width:50px;height:2px;background:var(--gray-800);margin:.8rem auto 0}
+
+/* STATS GRID */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;margin:2rem 0}
+.stat-card{text-align:center;padding:2rem 1rem;border:1px solid var(--gray-200);border-radius:4px;background:var(--white)}
+.stat-card .number{font-size:clamp(2rem,4vw,2.5rem);color:var(--black);font-weight:700}
+.stat-card .label{font-size:.85rem;color:var(--gray-600);margin-top:.3rem;font-weight:400}
+
+/* CARDS */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:2rem}
+.card{padding:2rem;border:1px solid var(--gray-200);border-radius:4px;background:var(--white)}
+.card h3{color:var(--black);font-size:1.05rem;margin-bottom:.8rem;font-weight:600}
+.card p,.card li{color:var(--gray-600);font-size:.9rem}
+.card ul{list-style:none;padding:0}
+.card ul li{padding:.3rem 0;padding-left:1.2rem;position:relative}
+.card ul li::before{content:'—';position:absolute;left:0;color:var(--gray-400);font-size:.8rem;top:.1rem}
+
+/* TABLES */
+.styled-table{width:100%;border-collapse:collapse;margin:2rem 0;font-size:.9rem}
+.styled-table th{background:var(--gray-100);color:var(--gray-800);padding:1rem;text-align:left;font-weight:600;text-transform:uppercase;font-size:.75rem;letter-spacing:1px}
+.styled-table td{padding:.8rem 1rem;border-bottom:1px solid var(--gray-200);color:var(--gray-600)}
+.styled-table tr:hover td{background:var(--gray-50)}
+
+/* ADVANTAGES */
+.advantage-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.2rem;margin-top:2rem}
+.advantage-item{display:flex;align-items:flex-start;gap:1rem;padding:1.2rem;border-left:2px solid var(--black)}
+.advantage-item .icon{font-size:1.5rem;flex-shrink:0}
+.advantage-item p{color:var(--gray-600);font-size:.9rem}
+.advantage-item strong{color:var(--black)}
+
+/* WHY NOW */
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;margin-top:2rem}
+.why-card{padding:1.5rem;text-align:center;border:1px solid var(--gray-200);border-radius:4px;background:var(--white)}
+.why-card .check{font-size:1.5rem;color:var(--gray-800);margin-bottom:.5rem}
+.why-card p{color:var(--gray-600);font-size:.9rem}
+
+/* GALLERY */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.6rem;margin-top:2rem}
+.gallery-grid a{display:block;overflow:hidden;aspect-ratio:4/3;border-radius:3px}
+.gallery-grid img{width:100%;height:100%;object-fit:cover;transition:transform .5s,opacity .3s;cursor:pointer}
+.gallery-grid img:hover{transform:scale(1.03);opacity:.9}
+
+/* LIGHTBOX */
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:2000;align-items:center;justify-content:center;cursor:pointer}
+.lightbox.active{display:flex}
+.lightbox img{max-width:90vw;max-height:90vh;object-fit:contain;border-radius:4px}
+.lightbox-close{position:absolute;top:1.5rem;right:2rem;font-size:2rem;color:var(--white);cursor:pointer;z-index:2001}
+
+/* CONTACT */
+.contact-box{text-align:center;padding:3rem;border:1px solid var(--gray-200);border-radius:4px;max-width:500px;margin:2rem auto 0;background:var(--white)}
+.contact-photo{width:120px;height:120px;border-radius:50%;object-fit:cover;margin:0 auto 1.5rem;display:block;border:3px solid var(--gray-200)}
+.contact-box h3{color:var(--black);font-size:1.4rem;margin-bottom:.3rem}
+.contact-box p{color:var(--gray-600);font-size:1rem;margin:.3rem 0}
+.contact-box a{color:var(--gray-800);text-decoration:none;font-weight:500}
+.contact-box a:hover{text-decoration:underline}
+
+/* PROJECTS */
+.project-list{margin-top:2rem}
+.project{padding:1.2rem 0;border-bottom:1px solid var(--gray-200)}
+.project strong{color:var(--black)}
+.project p,.project span{color:var(--gray-600);font-size:.9rem}
+
+/* FOOTER */
+footer{text-align:center;padding:2.5rem 2rem;background:var(--gray-50);border-top:1px solid var(--gray-200)}
+footer p{color:var(--gray-600);font-size:.85rem}
+footer .nda{color:var(--gray-800);font-style:italic;margin-bottom:.5rem;font-size:.9rem;font-weight:500}
+
+/* MOBILE */
+@media(max-width:600px){section{padding:3rem 1.2rem}.stats-grid{grid-template-columns:1fr 1fr}.gallery-grid{grid-template-columns:1fr 1fr}.advantage-list{grid-template-columns:1fr}}
+</style>
+</head>
+<body class="lang-en">
+
+<nav>
+  <div class="logo">
+    <img src="https://2s-e.pl/wp-content/uploads/2022/03/Artboard-1130.png" alt="SilkStone Estates">
+  </div>
+  <div class="nav-links">
+    <ul class="desktop-nav">
+      <li><a href="#overview" class="en">Overview</a><a href="#overview" class="pl">Przegląd</a></li>
+      <li><a href="#location" class="en">Location</a><a href="#location" class="pl">Lokalizacja</a></li>
+      <li><a href="#demand" class="en">Demand</a><a href="#demand" class="pl">Popyt</a></li>
+      <li><a href="#growth" class="en">Growth</a><a href="#growth" class="pl">Wzrost</a></li>
+      <li><a href="#gallery" class="en">Gallery</a><a href="#gallery" class="pl">Galeria</a></li>
+      <li><a href="#contact" class="en">Contact</a><a href="#contact" class="pl">Kontakt</a></li>
+    </ul>
+    <button class="lang-btn" onclick="toggleLang()">PL</button>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="#overview" onclick="closeMenu()" class="en">Overview</a><a href="#overview" onclick="closeMenu()" class="pl">Przegląd</a></li>
+    <li><a href="#location" onclick="closeMenu()" class="en">Location</a><a href="#location" onclick="closeMenu()" class="pl">Lokalizacja</a></li>
+    <li><a href="#demand" onclick="closeMenu()" class="en">Demand</a><a href="#demand" onclick="closeMenu()" class="pl">Popyt</a></li>
+    <li><a href="#growth" onclick="closeMenu()" class="en">Growth</a><a href="#growth" onclick="closeMenu()" class="pl">Wzrost</a></li>
+    <li><a href="#gallery" onclick="closeMenu()" class="en">Gallery</a><a href="#gallery" onclick="closeMenu()" class="pl">Galeria</a></li>
+    <li><a href="#contact" onclick="closeMenu()" class="en">Contact</a><a href="#contact" onclick="closeMenu()" class="pl">Kontakt</a></li>
+  </ul>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>City Guesthouse</h1>
+    <div class="subtitle">Zgorzelec — Görlitz</div>
+    <p class="tagline en">A fully operational 3-star hotel with premium elements in the heart of Europe's most exciting cross-border destination. 18+ years of proven success.</p>
+    <p class="tagline pl">W pełni operacyjny hotel 3-gwiazdkowy z elementami premium w sercu najbardziej ekscytującej transgranicznej destynacji Europy. 18+ lat udowodnionego sukcesu.</p>
+  </div>
+  <div class="scroll-hint"><span></span></div>
+</section>
+
+<!-- VIDEO -->
+<section class="video-section">
+  <div class="container">
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/BNu0JgVb3Mk?autoplay=1&mute=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- OVERVIEW -->
+<section id="overview" class="section-light">
+  <div class="container">
+    <div class="section-title">
+      <h2 class="en">Property Overview</h2>
+      <h2 class="pl">Przegląd Nieruchomości</h2>
+      <div class="line"></div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="number">11</div><div class="label en">Guest Rooms</div><div class="label pl">Pokoi gościnnych</div></div>
+      <div class="stat-card"><div class="number">2006</div><div class="label en">Year Built</div><div class="label pl">Rok budowy</div></div>
+      <div class="stat-card"><div class="number">18+</div><div class="label en">Years Operating</div><div class="label pl">Lat działalności</div></div>
+      <div class="stat-card"><div class="number">50m</div><div class="label en">To Old Town Bridge</div><div class="label pl">Do Mostu Staromiejskiego</div></div>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <h3 class="en">Room Structure</h3><h3 class="pl">Struktura pokoi</h3>
+        <ul>
+          <li class="en">2 Premium Apartments</li><li class="pl">2 Apartamenty Premium</li>
+          <li class="en">5 Double Rooms</li><li class="pl">5 Pokoi dwuosobowych</li>
+          <li class="en">4 Single Rooms</li><li class="pl">4 Pokoje jednoosobowe</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 class="en">Room Amenities</h3><h3 class="pl">Wyposażenie pokoi</h3>
+        <ul>
+          <li class="en">En-suite bathrooms with modern fixtures</li><li class="pl">Łazienki z nowoczesnym wyposażeniem</li>
+          <li class="en">TV-SAT, minibar, safe, free Wi-Fi</li><li class="pl">TV-SAT, minibar, sejf, darmowe Wi-Fi</li>
+          <li class="en">Air conditioning throughout</li><li class="pl">Klimatyzacja w całym obiekcie</li>
+          <li class="en">Modern fire safety & 24/7 CCTV</li><li class="pl">Nowoczesna ochrona p.poż. i monitoring 24/7</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 class="en">Facilities</h3><h3 class="pl">Udogodnienia</h3>
+        <ul>
+          <li class="en">Breakfast dining room / boutique restaurant</li><li class="pl">Sala śniadaniowa / restauracja butikowa</li>
+          <li class="en">Monitored guest parking</li><li class="pl">Monitorowany parking dla gości</li>
+          <li class="en">Event-ready meeting space</li><li class="pl">Sala konferencyjna</li>
+          <li class="en">Spa & wellness partnerships</li><li class="pl">Partnerstwa spa & wellness</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="location" class="section-alt">
+  <div class="container">
+    <div class="section-title">
+      <h2 class="en">Unrivaled Location</h2>
+      <h2 class="pl">Wyjątkowa Lokalizacja</h2>
+      <div class="line"></div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="number">200m</div><div class="label en">To Görlitz Historic Center</div><div class="label pl">Do centrum Görlitz</div></div>
+      <div class="stat-card"><div class="number">4 km</div><div class="label en">To A4 Motorway</div><div class="label pl">Do autostrady A4</div></div>
+      <div class="stat-card"><div class="number">1h28</div><div class="label en">Train to Dresden</div><div class="label pl">Pociąg do Drezna</div></div>
+      <div class="stat-card"><div class="number">100+</div><div class="label en">Film Productions in Görlitz</div><div class="label pl">Produkcji filmowych w Görlitz</div></div>
+    </div>
+    <div class="cards" style="margin-top:2rem">
+      <div class="card">
+        <h3>🎬 "Görliwood"</h3>
+        <p class="en">Görlitz has hosted 100+ film productions including <strong>4 Oscar-winning films</strong>: The Grand Budapest Hotel, The Reader, Inglourious Basterds, and more. A major cultural tourism draw.</p>
+        <p class="pl">Görlitz gościło ponad 100 produkcji filmowych, w tym <strong>4 filmy nagrodzone Oscarem</strong>: Grand Budapest Hotel, Lektor, Bękarty wojny i inne. Główny magnes turystyki kulturalnej.</p>
+      </div>
+      <div class="card">
+        <h3 class="en">🚄 Transport Hub</h3><h3 class="pl">🚄 Węzeł komunikacyjny</h3>
+        <p class="en">A4 Motorway (Berlin–Dresden–Wrocław–Kraków). Pan-European Corridor III. Direct rail to Dresden (1h28), Berlin, and Wrocław. Free cross-border transit to Görlitz in 3–4 minutes.</p>
+        <p class="pl">Autostrada A4 (Berlin–Drezno–Wrocław–Kraków). Paneuropejski Korytarz III. Bezpośrednie połączenia kolejowe do Drezna (1h28), Berlina i Wrocławia. Darmowy tranzyt transgraniczny do Görlitz w 3–4 minuty.</p>
+      </div>
+      <div class="card">
+        <h3 class="en">📊 Tourism Numbers</h3><h3 class="pl">📊 Statystyki turystyczne</h3>
+        <p class="en"><span style="font-size:1.8rem;color:var(--black);font-weight:700">321,226</span><br>overnight stays annually (2024)<br>Record satisfaction rating: <strong>86.7/100</strong></p>
+        <p class="pl"><span style="font-size:1.8rem;color:var(--black);font-weight:700">321 226</span><br>noclegów rocznie (2024)<br>Rekordowa ocena satysfakcji: <strong>86,7/100</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMAND -->
+<section id="demand" class="section-light">
+  <div class="container">
+    <div class="section-title">
+      <h2 class="en">Year-Round Demand Drivers</h2>
+      <h2 class="pl">Całoroczne Generatory Popytu</h2>
+      <div class="line"></div>
+    </div>
+    <div style="overflow-x:auto">
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th class="en">Event / Attraction</th><th class="pl">Wydarzenie / Atrakcja</th>
+            <th class="en">Annual Visitors</th><th class="pl">Odwiedzający rocznie</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Berzdorfer See (960 ha)</td><td>456,000+</td></tr>
+          <tr><td>Altstadtfest & Jakuby Festival</td><td>300,000</td></tr>
+          <tr><td class="en">Silesian Christmas Market</td><td class="pl">Śląski Jarmark Bożonarodzeniowy</td><td>100,000</td></tr>
+          <tr><td>ViaThea Street Theatre Festival</td><td>50,000</td></tr>
+          <tr><td>Görlitz-Zgorzelec EuroMarathon</td><td class="en">Thousands</td><td class="pl">Tysiące</td></tr>
+          <tr><td>Lausitz Festival (3 weeks)</td><td class="en">Major draw</td><td class="pl">Duża atrakcja</td></tr>
+          <tr><td>International Messiaen Days</td><td class="en">Prestigious music festival</td><td class="pl">Prestiżowy festiwal muzyczny</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTMENT BOOM -->
+<section class="section-alt">
+  <div class="container">
+    <div class="section-title">
+      <h2 class="en">Regional Investment Boom</h2>
+      <h2 class="pl">Boom Inwestycyjny w Regionie</h2>
+      <div class="line"></div>
+    </div>
+    <div class="project-list">
+      <div class="project"><strong>ID Logistics</strong> — <span class="en">44,000 m² warehouse, operational e-commerce hub for Central Europe</span><span class="pl">Magazyn 44 000 m², centrum e-commerce dla Europy Środkowej</span></div>
+      <div class="project"><strong>KNDS</strong> — <span class="en">German defense group acquired Alstom factory in Görlitz; 350–400 new jobs</span><span class="pl">Niemiecki koncern obronny przejął fabrykę Alstom w Görlitz; 350–400 nowych miejsc pracy</span></div>
+      <div class="project"><strong>PGE Group</strong> — <span class="en">PLN 235 billion total investment through 2035</span><span class="pl">235 mld PLN łącznych inwestycji do 2035</span></div>
+      <div class="project"><strong class="en">Solar Farm (Ręczyn)</strong><strong class="pl">Farma Solarna (Ręczyn)</strong> — <span class="en">76 MW, 250,000 panels, PLN 228–304M investment</span><span class="pl">76 MW, 250 000 paneli, inwestycja 228–304 mln PLN</span></div>
+      <div class="project"><strong class="en">Rail Modernization</strong><strong class="pl">Modernizacja kolei</strong> — <span class="en">PLN 180 billion through 2032; 35 min faster to Berlin</span><span class="pl">180 mld PLN do 2032; 35 min szybciej do Berlina</span></div>
+      <div class="project"><strong class="en">Polish Investment Zone</strong><strong class="pl">Polska Strefa Inwestycji</strong> — <span class="en">67 new projects; logistics hub for Central Europe</span><span class="pl">67 nowych projektów; centrum logistyczne Europy Środkowej</span></div>
+    </div>
+    <div class="stat-card" style="margin-top:2.5rem;border-color:var(--black)">
+      <div class="number">800</div>
+      <div class="label en">Hotel rooms structural deficit projected by 2027</div>
+      <div class="label pl">Strukturalny deficyt pokoi hotelowych prognozowany do 2027</div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETITIVE ADVANTAGES -->
+<section class="section-light">
+  <div class="container">
+    <div class="section-title">
+      <h2 class="en">Competitive Advantages</h2>
+      <h2 class="pl">Przewagi Konkurencyjne</h2>
+      <div class="line"></div>
+    </div>
+    <div class="advantage-list">
+      <div class="advantage-item"><div class="icon">💰</div><div><p><strong class="en">33% lower rates than German competitors</strong><strong class="pl">Ceny 33% niższe niż u niemieckiej konkurencji</strong><br><span class="en">PLN 270 vs PLN 405 avg. — guests save ~PLN 135/night</span><span class="pl">270 PLN vs 405 PLN śr. — goście oszczędzają ~135 PLN/noc</span></p></div></div>
+      <div class="advantage-item"><div class="icon">🏢</div><div><p><strong class="en">Established corporate clients</strong><strong class="pl">Stali klienci korporacyjni</strong><br><span class="en">Including KNDS, ID Logistics — long-term B2B contracts</span><span class="pl">W tym KNDS, ID Logistics — długoterminowe umowy B2B</span></p></div></div>
+      <div class="advantage-item"><div class="icon">📈</div><div><p><strong class="en">Dynamic pricing during events</strong><strong class="pl">Dynamiczne ceny podczas wydarzeń</strong><br><span class="en">Margin uplift of 100–150%</span><span class="pl">Wzrost marży o 100–150%</span></p></div></div>
+      <div class="advantage-item"><div class="icon">🛡️</div><div><p><strong class="en">No typical seasonality</strong><strong class="pl">Brak typowej sezonowości</strong><br><span class="en">Even the weakest month delivers 50%+ margin</span><span class="pl">Nawet najsłabszy miesiąc zapewnia 50%+ marży</span></p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- GROWTH -->
+<section id="growth" class="section-alt">
+  <div class="container">
+    <div class="section-title">
+      <h2 class="en">Growth Potential</h2>
+      <h2 class="pl">Potencjał Wzrostu</h2>
+      <div class="line"></div>
+    </div>
+    <div style="overflow-x:auto">
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th class="en">Scenario</th><th class="pl">Scenariusz</th>
+            <th class="en">Occupancy</th><th class="pl">Obłożenie</th>
+            <th>ROI</th>
+            <th class="en">Payback</th><th class="pl">Zwrot</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="en"><strong>Conservative</strong> (status quo)</td><td class="pl"><strong>Konserwatywny</strong> (status quo)</td><td>70%</td><td style="color:var(--black);font-weight:600">12.0%</td><td>~8 years / lat</td></tr>
+          <tr><td class="en"><strong>Realistic</strong> (smart pricing)</td><td class="pl"><strong>Realistyczny</strong> (smart pricing)</td><td>85%</td><td style="color:var(--black);font-weight:600">16.0%</td><td>~6.5 years / lat</td></tr>
+          <tr><td class="en"><strong>Optimistic</strong> (Grand Boutique)</td><td class="pl"><strong>Optymistyczny</strong> (Grand Boutique)</td><td>90%</td><td style="color:var(--black);font-weight:600">20.0%</td><td>~5 years / lat</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="cards" style="margin-top:2rem">
+      <div class="card">
+        <h3 class="en">Expansion Possibilities</h3><h3 class="pl">Możliwości rozbudowy</h3>
+        <ul>
+          <li class="en">Zoning allows building expansion</li><li class="pl">Plan zagospodarowania pozwala na rozbudowę</li>
+          <li class="en">Additional wing or extra floors possible</li><li class="pl">Możliwość dobudowy skrzydła lub pięter</li>
+          <li class="en">Spa or restaurant conversion</li><li class="pl">Konwersja na spa lub restaurację</li>
+          <li class="en">Micro-apartments for long-stay guests</li><li class="pl">Mikroapartamenty dla gości długoterminowych</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 class="en">Legal Status — Clear</h3><h3 class="pl">Status prawny — Czysty</h3>
+        <ul>
+          <li class="en">Full freehold ownership</li><li class="pl">Pełna własność gruntów</li>
+          <li class="en">No mortgage encumbrances</li><li class="pl">Brak obciążeń hipotecznych</li>
+          <li class="en">Not heritage listed</li><li class="pl">Nie jest zabytkiem</li>
+          <li class="en">All permits & certificates current</li><li class="pl">Wszystkie pozwolenia aktualne</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY INVEST NOW -->
+<section class="section-light">
+  <div class="container">
+    <div class="section-title">
+      <h2 class="en">Why Invest Now?</h2>
+      <h2 class="pl">Dlaczego Teraz?</h2>
+      <div class="line"></div>
+    </div>
+    <div class="why-grid">
+      <div class="why-card"><div class="check">◆</div><p class="en">Entry point <strong>before the demand explosion</strong></p><p class="pl">Wejście <strong>przed eksplozją popytu</strong></p></div>
+      <div class="why-card"><div class="check">◆</div><p class="en">Structural supply shortage — <strong>guaranteed revenue growth</strong></p><p class="pl">Strukturalny niedobór podaży — <strong>gwarantowany wzrost przychodów</strong></p></div>
+      <div class="why-card"><div class="check">◆</div><p class="en"><strong>18 years</strong> of proven business model</p><p class="pl"><strong>18 lat</strong> sprawdzonego modelu biznesowego</p></div>
+      <div class="why-card"><div class="check">◆</div><p class="en"><strong>No competition</strong> — location monopoly</p><p class="pl"><strong>Brak konkurencji</strong> — monopol lokalizacyjny</p></div>
+      <div class="why-card"><div class="check">◆</div><p class="en">Industrial transformation — <strong>permanent demand increase</strong></p><p class="pl">Transformacja przemysłowa — <strong>trwały wzrost popytu</strong></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="section-alt">
+  <div class="container">
+    <div class="section-title">
+      <h2 class="en">Photo Gallery</h2>
+      <h2 class="pl">Galeria Zdjęć</h2>
+      <div class="line"></div>
+    </div>
+    <div class="gallery-grid">
+      <a href="#" onclick="openLightbox(this.querySelector('img').src);return false"><img loading="lazy" src="https://2s-e.pl/wp-content/uploads/2025/09/93976574_raw.webp" alt="Hotel"></a>
+      <a href="#" onclick="openLightbox(this.querySelector('img').src);return false"><img loading="lazy" src="https://2s-e.pl/wp-content/uploads/2025/09/93976577_raw.webp" alt="Hotel"></a>
+      <a href="#" onclick="openLightbox(this.querySelector('img').src);return false"><img loading="lazy" src="https://2s-e.pl/wp-content/uploads/2025/09/93976583_raw.webp" alt="Hotel"></a>
+      <a href="#" onclick="openLightbox(this.querySelector('img').src);return false"><img loading="lazy" src="https://2s-e.pl/wp-content/uploads/2025/09/93976586_raw.webp" alt="Hotel"></a>
+      <a href="#" onclick="openLightbox(this.querySelector('img').src);return false"><img loading="lazy" src="https://2s-e.pl/wp-content/uploads/2025/09/93976607_raw.webp" alt="Hotel"></a>
+      <a href="#" onclick="openLightbox(this.querySelector('img').src);return false"><img loading="lazy" src="https://2s-e.pl/wp-content/uploads/2025/09/93976610_raw.webp" alt="Hotel"></a>
+      <a href="#" onclick="openLightbox(this.querySelector('img').src);return false"><img loading="lazy" src="https://2s-e.pl/wp-content/uploads/2025/09/93976613_raw.webp" alt="Hotel"></a>
+      <a href="#" onclick="openLightbox(this.querySelector('img').src);return false"><img loading="lazy" src="https://2s-e.pl/wp-content/uploads/2025/09/93976616_raw.webp" alt="Hotel"></a>
+      <a href="#" onclick="openLightbox(this.querySelector('img').src);return false"><img loading="lazy" src="https://2s-e.pl/wp-content/uploads/2025/09/93976619_raw.webp" alt="Hotel"></a>
+      <a href="#" onclick="openLightbox(this.querySelector('img').src);return false"><img loading="lazy" src="https://2s-e.pl/wp-content/uploads/2025/09/93976622_raw.webp" alt="Hotel"></a>
+      <a href="#" onclick="openLightbox(this.querySelector('img').src);return false"><img loading="lazy" src="https://2s-e.pl/wp-content/uploads/2025/09/93976625_raw.webp" alt="Hotel"></a>
+      <a href="#" onclick="openLightbox(this.querySelector('img').src);return false"><img loading="lazy" src="https://2s-e.pl/wp-content/uploads/2025/09/93976628_raw.webp" alt="Hotel"></a>
+      <a href="#" onclick="openLightbox(this.querySelector('img').src);return false"><img loading="lazy" src="https://2s-e.pl/wp-content/uploads/2025/09/93976631_raw.webp" alt="Hotel"></a>
+      <a href="#" onclick="openLightbox(this.querySelector('img').src);return false"><img loading="lazy" src="https://2s-e.pl/wp-content/uploads/2025/09/93976646_raw.webp" alt="Hotel"></a>
+      <a href="#" onclick="openLightbox(this.querySelector('img').src);return false"><img loading="lazy" src="https://2s-e.pl/wp-content/uploads/2025/09/93976649_raw.webp" alt="Hotel"></a>
+      <a href="#" onclick="openLightbox(this.querySelector('img').src);return false"><img loading="lazy" src="https://2s-e.pl/wp-content/uploads/2025/09/93976652_raw.webp" alt="Hotel"></a>
+      <a href="#" onclick="openLightbox(this.querySelector('img').src);return false"><img loading="lazy" src="https://2s-e.pl/wp-content/uploads/2025/09/93976655_raw.webp" alt="Hotel"></a>
+      <a href="#" onclick="openLightbox(this.querySelector('img').src);return false"><img loading="lazy" src="https://2s-e.pl/wp-content/uploads/2025/09/93976658_raw.webp" alt="Hotel"></a>
+      <a href="#" onclick="openLightbox(this.querySelector('img').src);return false"><img loading="lazy" src="https://2s-e.pl/wp-content/uploads/2025/09/93976661_raw.webp" alt="Hotel"></a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section-light">
+  <div class="container">
+    <div class="section-title">
+      <h2 class="en">Contact</h2>
+      <h2 class="pl">Kontakt</h2>
+      <div class="line"></div>
+    </div>
+    <div class="contact-box">
+      <img class="contact-photo" src="https://numerika.ai/wp-content/uploads/2025/09/profilowe-3.jpg" alt="Bartosz Paszek" loading="lazy">
+      <h3>Bartosz Paszek</h3>
+      <p style="color:var(--gray-600);margin-bottom:.8rem;font-weight:500">SilkStone Estates</p>
+      <p>📞 <a href="tel:+48509507610">+48 509 507 610</a></p>
+      <p>🌐 <a href="https://2s-e.pl" target="_blank">2s-e.pl</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="nda en">Price and detailed financial documentation available upon request and after signing an NDA.</p>
+  <p class="nda pl">Cena i szczegółowa dokumentacja finansowa dostępna na zapytanie po podpisaniu NDA.</p>
+  <p>© 2025 SilkStone Estates. All rights reserved.</p>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close">&times;</span>
+  <img id="lightbox-img" src="" alt="Gallery">
+</div>
+
+<script>
+function toggleLang(){
+  const b=document.body;
+  const btn=document.querySelector('.lang-btn');
+  if(b.classList.contains('lang-en')){b.classList.replace('lang-en','lang-pl');btn.textContent='EN'}
+  else{b.classList.replace('lang-pl','lang-en');btn.textContent='PL'}
+}
+function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('active')}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('active')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});
+function toggleMenu(){
+  document.querySelector('.hamburger').classList.toggle('active');
+  document.getElementById('mobileMenu').classList.toggle('active');
+}
+function closeMenu(){
+  document.querySelector('.hamburger').classList.remove('active');
+  document.getElementById('mobileMenu').classList.remove('active');
+}
+</script>
+</body>
+</html>
