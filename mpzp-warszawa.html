@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Warszawa bez planu — MPZP vs prestiżowe inwestycje</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--black:#0a0a0a;--white:#ffffff;--gray-50:#fafafa;--gray-100:#f5f5f5;--gray-200:#e5e5e5;--gray-400:#a3a3a3;--gray-600:#525765;--gray-800:#262626}
+html{scroll-behavior:smooth}
+body{font-family:'Montserrat',sans-serif;background:var(--white);color:var(--gray-800);line-height:1.7;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Montserrat',sans-serif;font-weight:600}
+.lang-en .pl,.lang-pl .en{display:none!important}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px;border-bottom:1px solid var(--gray-200)}
+nav .logo{display:flex;align-items:center;gap:.8rem;font-weight:700;font-size:.95rem;letter-spacing:1px;color:var(--black)}
+nav ul{list-style:none;display:flex;gap:1.8rem}
+nav ul li a{color:var(--gray-600);text-decoration:none;font-size:.8rem;text-transform:uppercase;letter-spacing:1.5px;font-weight:500;transition:color .3s}
+nav ul li a:hover{color:var(--black)}
+.lang-btn{background:none;border:1px solid var(--gray-800);color:var(--gray-800);padding:6px 16px;font-size:.75rem;letter-spacing:2px;cursor:pointer;text-transform:uppercase;transition:all .3s;font-family:'Montserrat',sans-serif;font-weight:500}
+.lang-btn:hover{background:var(--black);color:var(--white)}
+.nav-links{display:flex;align-items:center;gap:1.8rem}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.hamburger span{display:block;width:24px;height:2px;background:var(--black);transition:all .3s}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:var(--white);border-bottom:1px solid var(--gray-200);padding:1.5rem 2rem;z-index:999}
+.mobile-menu.active{display:block}
+.mobile-menu ul{list-style:none;display:flex;flex-direction:column;gap:1rem}
+.mobile-menu ul li a{color:var(--gray-600);text-decoration:none;font-size:.9rem;text-transform:uppercase;letter-spacing:1.5px;font-weight:500}
+@media(max-width:768px){nav ul.desktop-nav{display:none}.hamburger{display:flex}}
+
+.hero{min-height:100vh;background:linear-gradient(135deg,#f5f5f5 0%,#e0e0e0 100%);display:flex;align-items:center;justify-content:center;text-align:center;position:relative}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,255,255,.3),rgba(255,255,255,.7))}
+.hero-content{position:relative;z-index:1;max-width:800px;padding:2rem}
+.hero .emoji-hero{font-size:clamp(4rem,8vw,6rem);margin-bottom:1rem}
+.hero h1{font-size:clamp(2.5rem,6vw,4.5rem);color:var(--black);margin-bottom:.5rem;letter-spacing:2px;font-weight:700}
+.hero .subtitle{font-size:clamp(1rem,2.5vw,1.4rem);color:var(--gray-600);margin-bottom:1rem;font-weight:500;letter-spacing:1px}
+.hero .tagline{color:var(--gray-600);font-size:clamp(.85rem,1.5vw,.95rem);max-width:620px;margin:0 auto 2rem;font-weight:300;line-height:1.8}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:1;animation:bounce 2s infinite}
+.scroll-hint span{display:block;width:1px;height:40px;background:var(--gray-400);margin:0 auto;opacity:.5}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(10px)}}
+
+section{padding:clamp(3rem,6vw,5rem) 2rem}
+.section-light{background:var(--white)}
+.section-alt{background:var(--gray-50)}
+.container{max-width:1200px;margin:0 auto}
+.section-title{text-align:center;margin-bottom:3rem}
+.section-title h2{font-size:clamp(1.5rem,3vw,2.2rem);color:var(--black);margin-bottom:.5rem;font-weight:600;letter-spacing:1px}
+.section-title .line{width:50px;height:2px;background:var(--gray-800);margin:.8rem auto 0}
+
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;margin:2rem 0}
+.stat-card{text-align:center;padding:2rem 1rem;border:1px solid var(--gray-200);border-radius:4px;background:var(--white)}
+.stat-card .number{font-size:clamp(2rem,4vw,2.5rem);color:var(--black);font-weight:700}
+.stat-card .label{font-size:.85rem;color:var(--gray-600);margin-top:.3rem;font-weight:400}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:2rem}
+.card{padding:2rem;border:1px solid var(--gray-200);border-radius:4px;background:var(--white)}
+.card h3{color:var(--black);font-size:1.05rem;margin-bottom:.8rem;font-weight:600}
+.card p,.card li{color:var(--gray-600);font-size:.9rem}
+.card ul{list-style:none;padding:0}
+.card ul li{padding:.3rem 0;padding-left:1.2rem;position:relative}
+.card ul li::before{content:'—';position:absolute;left:0;color:var(--gray-400);font-size:.8rem;top:.1rem}
+
+.styled-table{width:100%;border-collapse:collapse;margin:2rem 0;font-size:.9rem}
+.styled-table th{background:var(--gray-100);color:var(--gray-800);padding:1rem;text-align:left;font-weight:600;text-transform:uppercase;font-size:.75rem;letter-spacing:1px}
+.styled-table td{padding:.8rem 1rem;border-bottom:1px solid var(--gray-200);color:var(--gray-600)}
+.styled-table tr:hover td{background:var(--gray-50)}
+
+.advantage-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.2rem;margin-top:2rem}
+.advantage-item{display:flex;align-items:flex-start;gap:1rem;padding:1.2rem;border-left:2px solid var(--black)}
+.advantage-item .icon{font-size:1.5rem;flex-shrink:0}
+.advantage-item p{color:var(--gray-600);font-size:.9rem}
+.advantage-item strong{color:var(--black)}
+
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;margin-top:2rem}
+.why-card{padding:1.5rem;text-align:center;border:1px solid var(--gray-200);border-radius:4px;background:var(--white)}
+.why-card .check{font-size:1.5rem;color:var(--gray-800);margin-bottom:.5rem}
+.why-card p{color:var(--gray-600);font-size:.9rem}
+
+.timeline{max-width:700px;margin:2rem auto 0;position:relative;padding-left:2rem}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--gray-200)}
+.timeline-item{position:relative;margin-bottom:2rem;padding-left:1.5rem}
+.timeline-item::before{content:'';position:absolute;left:-2.35rem;top:.5rem;width:12px;height:12px;border-radius:50%;background:var(--black)}
+.timeline-item .year{font-weight:700;color:var(--black);font-size:1.1rem}
+.timeline-item p{color:var(--gray-600);font-size:.9rem;margin-top:.2rem}
+
+.press-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:2rem}
+.press-card{padding:1.8rem;border:1px solid var(--gray-200);border-radius:4px;background:var(--white);transition:box-shadow .3s,transform .3s;text-decoration:none;display:block}
+.press-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.08);transform:translateY(-2px)}
+.press-card .press-category{font-size:.7rem;text-transform:uppercase;letter-spacing:2px;color:var(--gray-400);margin-bottom:.6rem;font-weight:600}
+.press-card .press-title{font-size:1rem;color:var(--black);font-weight:600;margin-bottom:.4rem;line-height:1.4}
+.press-card .press-source{font-size:.8rem;color:var(--gray-600);margin-bottom:.5rem;font-weight:500}
+.press-card .press-desc{font-size:.85rem;color:var(--gray-600);line-height:1.6;font-weight:300}
+
+.highlight-box{background:var(--black);color:var(--white);padding:3rem;border-radius:4px;text-align:center;margin:2rem 0}
+.highlight-box .number{font-size:clamp(2.5rem,5vw,3.5rem);font-weight:700;margin-bottom:.5rem}
+.highlight-box p{font-size:1rem;opacity:.85;max-width:600px;margin:0 auto}
+
+footer{text-align:center;padding:2.5rem 2rem;background:var(--gray-50);border-top:1px solid var(--gray-200)}
+footer p{color:var(--gray-600);font-size:.85rem}
+
+@media(max-width:600px){section{padding:3rem 1.2rem}.stats-grid{grid-template-columns:1fr 1fr}.advantage-list{grid-template-columns:1fr}.press-grid{grid-template-columns:1fr}.timeline{padding-left:1.5rem}.timeline-item{padding-left:1rem}}
+</style>
+</head>
+<body class="lang-pl">
+
+<nav>
+  <div class="logo">🏙️ MPZP WARSZAWA</div>
+  <div class="nav-links">
+    <ul class="desktop-nav">
+      <li><a href="#stan" class="pl">Stan MPZP</a><a href="#stan" class="en">MPZP Status</a></li>
+      <li><a href="#koszty" class="pl">Koszty</a><a href="#koszty" class="en">Costs</a></li>
+      <li><a href="#msn" class="pl">MSN</a><a href="#msn" class="en">MSN</a></li>
+      <li><a href="#konsekwencje" class="pl">Konsekwencje</a><a href="#konsekwencje" class="en">Consequences</a></li>
+      <li><a href="#timeline" class="pl">Oś czasu</a><a href="#timeline" class="en">Timeline</a></li>
+      <li><a href="#zrodla" class="pl">Źródła</a><a href="#zrodla" class="en">Sources</a></li>
+    </ul>
+    <button class="lang-btn" onclick="toggleLang()">EN</button>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="#stan" onclick="closeMenu()" class="pl">Stan MPZP</a><a href="#stan" onclick="closeMenu()" class="en">MPZP Status</a></li>
+    <li><a href="#koszty" onclick="closeMenu()" class="pl">Koszty</a><a href="#koszty" onclick="closeMenu()" class="en">Costs</a></li>
+    <li><a href="#msn" onclick="closeMenu()" class="pl">MSN</a><a href="#msn" onclick="closeMenu()" class="en">MSN</a></li>
+    <li><a href="#konsekwencje" onclick="closeMenu()" class="pl">Konsekwencje</a><a href="#konsekwencje" onclick="closeMenu()" class="en">Consequences</a></li>
+    <li><a href="#timeline" onclick="closeMenu()" class="pl">Oś czasu</a><a href="#timeline" onclick="closeMenu()" class="en">Timeline</a></li>
+    <li><a href="#zrodla" onclick="closeMenu()" class="pl">Źródła</a><a href="#zrodla" onclick="closeMenu()" class="en">Sources</a></li>
+  </ul>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="emoji-hero">🏗️</div>
+    <h1 class="pl">Warszawa bez planu</h1>
+    <h1 class="en">Warsaw without a plan</h1>
+    <div class="subtitle pl">Miasto, które wydaje setki milionów na muzea — ale nie ma planów zagospodarowania przestrzennego</div>
+    <div class="subtitle en">A city that spends hundreds of millions on museums — but has no spatial development plans</div>
+    <p class="tagline pl">Tylko ~40% powierzchni Warszawy jest objęte miejscowymi planami zagospodarowania przestrzennego. Za kwotę wydaną na jedno muzeum można było pokryć planami całe miasto.</p>
+    <p class="tagline en">Only ~40% of Warsaw's area is covered by local spatial development plans. The amount spent on a single museum could have covered the entire city with plans.</p>
+  </div>
+  <div class="scroll-hint"><span></span></div>
+</section>
+
+<!-- STAN MPZP -->
+<section id="stan" class="section-light">
+  <div class="container">
+    <div class="section-title">
+      <h2 class="pl">📊 Stan pokrycia MPZP w Polsce</h2>
+      <h2 class="en">📊 MPZP Coverage in Poland</h2>
+      <div class="line"></div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="number">~40%</div><div class="label pl">Warszawa — pokrycie MPZP</div><div class="label en">Warsaw — MPZP coverage</div></div>
+      <div class="stat-card"><div class="number">~70%</div><div class="label">Kraków</div></div>
+      <div class="stat-card"><div class="number">~60%</div><div class="label">Wrocław</div></div>
+      <div class="stat-card"><div class="number">~55%</div><div class="label">Gdańsk</div></div>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <h3 class="pl">🏛️ Co to jest MPZP?</h3>
+        <h3 class="en">🏛️ What is MPZP?</h3>
+        <p class="pl">Miejscowy Plan Zagospodarowania Przestrzennego (MPZP) to akt prawa miejscowego, który określa co, gdzie i jak można budować. Bez niego obowiązują decyzje o warunkach zabudowy (WZ) — indywidualne, uznaniowe i często chaotyczne.</p>
+        <p class="en">A Local Spatial Development Plan (MPZP) is a local law that defines what, where, and how you can build. Without it, individual zoning decisions (WZ) apply — discretionary, case-by-case, and often chaotic.</p>
+      </div>
+      <div class="card">
+        <h3 class="pl">⚠️ Warszawa na szarym końcu</h3>
+        <h3 class="en">⚠️ Warsaw at the bottom</h3>
+        <p class="pl">Stolica Polski ma jedno z najniższych pokryć planami miejscowymi wśród dużych miast. Kraków ma prawie dwukrotnie większe pokrycie. Oznacza to, że 60% powierzchni Warszawy jest planowane „na żywioł" — przez decyzje WZ.</p>
+        <p class="en">Poland's capital has one of the lowest plan coverages among major cities. Kraków has nearly double the coverage. This means 60% of Warsaw's area is planned "ad hoc" — through individual WZ decisions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KOSZTY -->
+<section id="koszty" class="section-alt">
+  <div class="container">
+    <div class="section-title">
+      <h2 class="pl">💰 Ile kosztuje plan?</h2>
+      <h2 class="en">💰 How much does a plan cost?</h2>
+      <div class="line"></div>
+    </div>
+    <div style="overflow-x:auto">
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th class="pl">Pozycja</th><th class="en">Item</th>
+            <th class="pl">Koszt</th><th class="en">Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="pl">Jeden MPZP (średni)</td><td class="en">Single MPZP (average)</td>
+            <td class="pl">1–5 mln zł</td><td class="en">PLN 1–5 million</td>
+          </tr>
+          <tr>
+            <td class="pl">Pokrycie planami całej Warszawy</td><td class="en">Full coverage for Warsaw</td>
+            <td class="pl">200–500 mln zł</td><td class="en">PLN 200–500 million</td>
+          </tr>
+          <tr>
+            <td class="pl">Roczny budżet BAiPP</td><td class="en">BAiPP annual budget</td>
+            <td class="pl">~30–50 mln zł</td><td class="en">~PLN 30–50 million</td>
+          </tr>
+          <tr>
+            <td class="pl">Czas uchwalenia jednego MPZP</td><td class="en">Time to adopt one MPZP</td>
+            <td class="pl">2–5 lat</td><td class="en">2–5 years</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="highlight-box">
+      <div class="number pl">200–500 mln zł</div>
+      <div class="number en">PLN 200–500M</div>
+      <p class="pl">Tyle wystarczyłoby, by pokryć planami zagospodarowania przestrzennego całą Warszawę — miasto 1,8 mln mieszkańców, 517 km²</p>
+      <p class="en">That's all it would take to cover all of Warsaw with spatial development plans — a city of 1.8 million people, 517 km²</p>
+    </div>
+  </div>
+</section>
+
+<!-- MSN PORÓWNANIE -->
+<section id="msn" class="section-light">
+  <div class="container">
+    <div class="section-title">
+      <h2 class="pl">🏛️ Muzeum vs Plan miasta</h2>
+      <h2 class="en">🏛️ Museum vs City Plan</h2>
+      <div class="line"></div>
+    </div>
+    <div style="overflow-x:auto">
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th class="pl">Pozycja</th><th class="en">Item</th>
+            <th class="pl">Kwota</th><th class="en">Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="pl">Budowa Muzeum Sztuki Nowoczesnej</td><td class="en">Museum of Modern Art construction</td>
+            <td><strong>416 mln zł</strong></td>
+          </tr>
+          <tr>
+            <td class="pl">Teatr Rozmaitości (TR Warszawa) — remont</td><td class="en">TR Warszawa theatre — renovation</td>
+            <td><strong>125 mln zł</strong></td>
+          </tr>
+          <tr>
+            <td class="pl">Projekt architektoniczny (Thomas Phifer)</td><td class="en">Architectural design (Thomas Phifer)</td>
+            <td><strong>28 mln zł</strong></td>
+          </tr>
+          <tr style="background:var(--gray-100)">
+            <td class="pl"><strong>RAZEM — jeden kompleks kulturalny</strong></td><td class="en"><strong>TOTAL — one cultural complex</strong></td>
+            <td><strong style="color:var(--black);font-size:1.1rem">~570 mln zł</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="cards" style="margin-top:2rem">
+      <div class="card" style="border-color:var(--black)">
+        <h3 class="pl">🏛️ Za 570 mln zł Warszawa dostała:</h3>
+        <h3 class="en">🏛️ For PLN 570M Warsaw got:</h3>
+        <ul>
+          <li class="pl">Jedno muzeum na pl. Defilad</li><li class="en">One museum on Defilad Square</li>
+          <li class="pl">18 lat od konkursu do otwarcia</li><li class="en">18 years from competition to opening</li>
+          <li class="pl">Wyremontowany teatr</li><li class="en">A renovated theatre</li>
+        </ul>
+      </div>
+      <div class="card" style="border-color:var(--black)">
+        <h3 class="pl">📋 Za 570 mln zł Warszawa mogła dostać:</h3>
+        <h3 class="en">📋 For PLN 570M Warsaw could have got:</h3>
+        <ul>
+          <li class="pl">Plany zagospodarowania dla CAŁEGO miasta</li><li class="en">Development plans for the ENTIRE city</li>
+          <li class="pl">Koniec chaosu WZ-ek</li><li class="en">End of WZ decision chaos</li>
+          <li class="pl">Ochrona wartości nieruchomości</li><li class="en">Property value protection</li>
+          <li class="pl">Przewidywalność dla mieszkańców i inwestorów</li><li class="en">Predictability for residents and investors</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KONSEKWENCJE -->
+<section id="konsekwencje" class="section-alt">
+  <div class="container">
+    <div class="section-title">
+      <h2 class="pl">⚡ Konsekwencje braku planów</h2>
+      <h2 class="en">⚡ Consequences of no plans</h2>
+      <div class="line"></div>
+    </div>
+    <div class="advantage-list">
+      <div class="advantage-item">
+        <div class="icon">🏗️</div>
+        <div>
+          <p><strong class="pl">Chaos urbanistyczny</strong><strong class="en">Urban chaos</strong><br>
+          <span class="pl">Bloki mieszkalne obok domków jednorodzinnych, biurowce w środku osiedli. Brak spójnej wizji przestrzeni.</span>
+          <span class="en">Apartment blocks next to single-family homes, offices in the middle of residential areas. No coherent spatial vision.</span></p>
+        </div>
+      </div>
+      <div class="advantage-item">
+        <div class="icon">📄</div>
+        <div>
+          <p><strong class="pl">Patologia WZ-ek</strong><strong class="en">WZ decision pathology</strong><br>
+          <span class="pl">Decyzje o warunkach zabudowy wydawane uznaniowo, często sprzeczne z interesem mieszkańców. Każdy może dostać WZ-kę na prawie wszystko.</span>
+          <span class="en">Zoning decisions issued at discretion, often contrary to residents' interests. Anyone can get a WZ for almost anything.</span></p>
+        </div>
+      </div>
+      <div class="advantage-item">
+        <div class="icon">🏘️</div>
+        <div>
+          <p><strong class="pl">Deweloperka bez kontroli</strong><strong class="en">Uncontrolled development</strong><br>
+          <span class="pl">Deweloperzy budują maksymalną liczbę mieszkań na minimalnej powierzchni. Brak wymagań dot. zieleni, parkingów, infrastruktury społecznej.</span>
+          <span class="en">Developers build maximum apartments on minimum land. No requirements for greenery, parking, or social infrastructure.</span></p>
+        </div>
+      </div>
+      <div class="advantage-item">
+        <div class="icon">📉</div>
+        <div>
+          <p><strong class="pl">Utrata wartości dzielnic</strong><strong class="en">Neighborhood value loss</strong><br>
+          <span class="pl">Bez planów nic nie chroni charakteru dzielnicy. Willowa ulica może zostać zabudowana 10-piętrowcem „na WZ-kę".</span>
+          <span class="en">Without plans, nothing protects neighborhood character. A villa street can get a 10-story building "on a WZ decision".</span></p>
+        </div>
+      </div>
+      <div class="advantage-item">
+        <div class="icon">🚗</div>
+        <div>
+          <p><strong class="pl">Ukryte koszty infrastruktury</strong><strong class="en">Hidden infrastructure costs</strong><br>
+          <span class="pl">Chaotyczna zabudowa wymusza kosztowne doraźne inwestycje w drogi, kanalizację, szkoły. Planowanie „po fakcie" jest 3–5× droższe.</span>
+          <span class="en">Chaotic development forces costly ad-hoc investments in roads, sewage, schools. Planning "after the fact" costs 3–5× more.</span></p>
+        </div>
+      </div>
+      <div class="advantage-item">
+        <div class="icon">⚖️</div>
+        <div>
+          <p><strong class="pl">Korupcjogenne środowisko</strong><strong class="en">Corruption-prone environment</strong><br>
+          <span class="pl">Uznaniowość WZ-ek tworzy pole do nadużyć. Plan miejscowy jest transparentny — WZ-ka jest uznaniowa.</span>
+          <span class="en">Discretionary WZ decisions create room for abuse. A local plan is transparent — a WZ decision is discretionary.</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline" class="section-light">
+  <div class="container">
+    <div class="section-title">
+      <h2 class="pl">⏳ 18 lat — oś czasu MSN vs MPZP</h2>
+      <h2 class="en">⏳ 18 years — MSN vs MPZP timeline</h2>
+      <div class="line"></div>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="year">2006</div>
+        <p class="pl">Międzynarodowy konkurs architektoniczny na MSN. Wygrywa Christian Kerez.</p>
+        <p class="en">International architectural competition for MSN. Christian Kerez wins.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="year">2007–2012</div>
+        <p class="pl">Lata dyskusji o lokalizacji, zmiana koncepcji. Warszawa wciąż nie uchwala planów.</p>
+        <p class="en">Years of debate about location, concept changes. Warsaw still doesn't adopt plans.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="year">2014</div>
+        <p class="pl">Nowy konkurs. Wygrywa Thomas Phifer and Partners. Koszt samego projektu: 28 mln zł.</p>
+        <p class="en">New competition. Thomas Phifer and Partners wins. Design cost alone: PLN 28M.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="year">2015–2019</div>
+        <p class="pl">Projektowanie, przygotowania. W tym czasie za roczny budżet BAiPP (30–50 mln) uchwalono jedynie kilkanaście planów.</p>
+        <p class="en">Design, preparations. Meanwhile, with BAiPP's annual budget (PLN 30–50M), only a dozen plans were adopted.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="year">2019–2023</div>
+        <p class="pl">Budowa MSN + TR Warszawa. Łączny koszt: ~540 mln zł. Pokrycie Warszawy planami wciąż ~40%.</p>
+        <p class="en">MSN + TR Warszawa construction. Total cost: ~PLN 540M. Warsaw's plan coverage still ~40%.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="year">2024</div>
+        <p class="pl">Otwarcie MSN. 18 lat od konkursu. W tym samym czasie można było uchwalić plany dla całego miasta — i jeszcze zostałyby pieniądze.</p>
+        <p class="en">MSN opens. 18 years since the competition. In the same time, plans for the entire city could have been adopted — with money to spare.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PODSUMOWANIE -->
+<section class="section-alt">
+  <div class="container">
+    <div class="section-title">
+      <h2 class="pl">🎯 Podsumowanie</h2>
+      <h2 class="en">🎯 Summary</h2>
+      <div class="line"></div>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="check">🏛️</div>
+        <p class="pl"><strong>570 mln zł</strong> na jeden kompleks kulturalny</p>
+        <p class="en"><strong>PLN 570M</strong> on one cultural complex</p>
+      </div>
+      <div class="why-card">
+        <div class="check">📋</div>
+        <p class="pl"><strong>200–500 mln zł</strong> by pokryć planami całą Warszawę</p>
+        <p class="en"><strong>PLN 200–500M</strong> to cover all of Warsaw with plans</p>
+      </div>
+      <div class="why-card">
+        <div class="check">⏳</div>
+        <p class="pl"><strong>18 lat</strong> budowy muzeum = czas na plany dla całego miasta</p>
+        <p class="en"><strong>18 years</strong> building a museum = time for plans for the entire city</p>
+      </div>
+      <div class="why-card">
+        <div class="check">🏙️</div>
+        <p class="pl"><strong>~60%</strong> Warszawy wciąż bez planu zagospodarowania</p>
+        <p class="en"><strong>~60%</strong> of Warsaw still without a development plan</p>
+      </div>
+    </div>
+    <div class="highlight-box" style="margin-top:3rem">
+      <p class="pl" style="font-size:1.2rem;opacity:1;font-weight:500">Nie chodzi o to, żeby nie budować muzeów.<br>Chodzi o to, żeby najpierw mieć plan dla miasta.</p>
+      <p class="en" style="font-size:1.2rem;opacity:1;font-weight:500">It's not about not building museums.<br>It's about having a plan for the city first.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ŹRÓDŁA -->
+<section id="zrodla" class="section-light">
+  <div class="container">
+    <div class="section-title">
+      <h2 class="pl">📚 Źródła</h2>
+      <h2 class="en">📚 Sources</h2>
+      <div class="line"></div>
+    </div>
+    <div class="press-grid">
+      <a href="https://pl.wikipedia.org/wiki/Muzeum_Sztuki_Nowoczesnej_w_Warszawie" target="_blank" rel="noopener" class="press-card">
+        <div class="press-category">📖 Wikipedia</div>
+        <div class="press-title">Muzeum Sztuki Nowoczesnej w Warszawie</div>
+        <div class="press-source">Wikipedia PL</div>
+        <div class="press-desc pl">Historia budowy, koszty, konkursy architektoniczne MSN na pl. Defilad.</div>
+        <div class="press-desc en">Construction history, costs, MSN architectural competitions at Defilad Square.</div>
+      </a>
+      <a href="https://www.nik.gov.pl/aktualnosci/planowanie-i-zagospodarowanie-przestrzenne.html" target="_blank" rel="noopener" class="press-card">
+        <div class="press-category">📊 Raport</div>
+        <div class="press-title pl">NIK o planowaniu przestrzennym w Polsce</div>
+        <div class="press-title en">NIK report on spatial planning in Poland</div>
+        <div class="press-source">Najwyższa Izba Kontroli</div>
+        <div class="press-desc pl">Kontrole NIK wskazują na systemowe problemy z uchwalaniem planów miejscowych w polskich miastach.</div>
+        <div class="press-desc en">NIK audits point to systemic problems with adopting local plans in Polish cities.</div>
+      </a>
+      <a href="https://stat.gov.pl/" target="_blank" rel="noopener" class="press-card">
+        <div class="press-category">📊 Dane</div>
+        <div class="press-title pl">Główny Urząd Statystyczny — dane o planowaniu przestrzennym</div>
+        <div class="press-title en">Central Statistical Office — spatial planning data</div>
+        <div class="press-source">GUS</div>
+        <div class="press-desc pl">Statystyki pokrycia planami miejscowymi w miastach Polski.</div>
+        <div class="press-desc en">Statistics on local plan coverage in Polish cities.</div>
+      </a>
+      <a href="https://architektura.um.warszawa.pl/" target="_blank" rel="noopener" class="press-card">
+        <div class="press-category">🏛️ Urząd Miasta</div>
+        <div class="press-title">Biuro Architektury i Planowania Przestrzennego m.st. Warszawy</div>
+        <div class="press-source">BAiPP</div>
+        <div class="press-desc pl">Oficjalna strona biura odpowiedzialnego za planowanie przestrzenne Warszawy, w tym dane o budżecie i uchwalonych planach.</div>
+        <div class="press-desc en">Official site of the office responsible for Warsaw's spatial planning, including budget and adopted plan data.</div>
+      </a>
+      <a href="https://www.theguardian.com/artanddesign/2024/oct/25/museum-of-modern-art-warsaw-thomas-phifer" target="_blank" rel="noopener" class="press-card">
+        <div class="press-category">🌍 Prasa / Press</div>
+        <div class="press-title">Warsaw's Museum of Modern Art finally opens</div>
+        <div class="press-source">The Guardian — Oct 2024</div>
+        <div class="press-desc pl">Relacja z otwarcia MSN — 18 lat od pierwszego konkursu architektonicznego.</div>
+        <div class="press-desc en">Coverage of MSN opening — 18 years after the first architectural competition.</div>
+      </a>
+      <a href="https://urbanistyka.info/" target="_blank" rel="noopener" class="press-card">
+        <div class="press-category">📖 Portal</div>
+        <div class="press-title pl">Urbanistyka.info — portal o planowaniu przestrzennym</div>
+        <div class="press-title en">Urbanistyka.info — spatial planning portal</div>
+        <div class="press-source">urbanistyka.info</div>
+        <div class="press-desc pl">Analizy, dane i komentarze o stanie planowania przestrzennego w polskich miastach.</div>
+        <div class="press-desc en">Analysis, data and commentary on spatial planning in Polish cities.</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="pl" style="font-style:italic;margin-bottom:.5rem">Dane orientacyjne na podstawie źródeł publicznych. Strona ma charakter informacyjno-publicystyczny.</p>
+  <p class="en" style="font-style:italic;margin-bottom:.5rem">Approximate data based on public sources. This page is informational and editorial in nature.</p>
+  <p>© 2025 · Warszawa bez planu</p>
+</footer>
+
+<script>
+function toggleLang(){
+  const b=document.body;
+  const btn=document.querySelector('.lang-btn');
+  if(b.classList.contains('lang-en')){b.classList.replace('lang-en','lang-pl');btn.textContent='EN'}
+  else{b.classList.replace('lang-pl','lang-en');btn.textContent='PL'}
+}
+function toggleMenu(){
+  document.querySelector('.hamburger').classList.toggle('active');
+  document.getElementById('mobileMenu').classList.toggle('active');
+}
+function closeMenu(){
+  document.querySelector('.hamburger').classList.remove('active');
+  document.getElementById('mobileMenu').classList.remove('active');
+}
+</script>
+</body>
+</html>
