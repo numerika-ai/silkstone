@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--black:#0a0a0a;--white:#ffffff;--gray-50:#fafafa;--gray-100:#f5f5f5;--gray-200:#e5e5e5;--gray-400:#a3a3a3;--gray-600:#525765;--gray-800:#262626}
+:root{--black:#0a0a0a;--white:#ffffff;--gray-50:#fafafa;--gray-100:#f5f5f5;--gray-200:#e5e5e5;--gray-400:#a3a3a3;--gray-600:#525765;--gray-800:#262626;--accent:#c0392b}
 html{scroll-behavior:smooth}
 body{font-family:'Montserrat',sans-serif;background:var(--white);color:var(--gray-800);line-height:1.7;overflow-x:hidden}
 h1,h2,h3,h4{font-family:'Montserrat',sans-serif;font-weight:600}
@@ -55,6 +55,8 @@ section{padding:clamp(3rem,6vw,5rem) 2rem}
 .stat-card{text-align:center;padding:2rem 1rem;border:1px solid var(--gray-200);border-radius:4px;background:var(--white)}
 .stat-card .number{font-size:clamp(2rem,4vw,2.5rem);color:var(--black);font-weight:700}
 .stat-card .label{font-size:.85rem;color:var(--gray-600);margin-top:.3rem;font-weight:400}
+.stat-card.highlight{border-color:var(--accent);background:rgba(192,57,43,.03)}
+.stat-card.highlight .number{color:var(--accent)}
 
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:2rem}
 .card{padding:2rem;border:1px solid var(--gray-200);border-radius:4px;background:var(--white)}
@@ -80,12 +82,27 @@ section{padding:clamp(3rem,6vw,5rem) 2rem}
 .why-card .check{font-size:1.5rem;color:var(--gray-800);margin-bottom:.5rem}
 .why-card p{color:var(--gray-600);font-size:.9rem}
 
-.timeline{max-width:700px;margin:2rem auto 0;position:relative;padding-left:2rem}
-.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--gray-200)}
-.timeline-item{position:relative;margin-bottom:2rem;padding-left:1.5rem}
-.timeline-item::before{content:'';position:absolute;left:-2.35rem;top:.5rem;width:12px;height:12px;border-radius:50%;background:var(--black)}
-.timeline-item .year{font-weight:700;color:var(--black);font-size:1.1rem}
-.timeline-item p{color:var(--gray-600);font-size:.9rem;margin-top:.2rem}
+/* DUAL TIMELINE */
+.dual-timeline{max-width:1000px;margin:2rem auto 0;position:relative}
+.dual-timeline-row{display:grid;grid-template-columns:1fr 80px 1fr;gap:0;margin-bottom:0;position:relative}
+.dual-timeline-center{display:flex;flex-direction:column;align-items:center;position:relative}
+.dual-timeline-center .year-badge{background:var(--black);color:var(--white);padding:6px 14px;border-radius:20px;font-size:.85rem;font-weight:700;z-index:2;white-space:nowrap}
+.dual-timeline-center .line-segment{flex:1;width:2px;background:var(--gray-200);min-height:20px}
+.dual-timeline-left,.dual-timeline-right{padding:1rem 1.5rem}
+.dual-timeline-left{text-align:right;border-right:none}
+.dual-timeline-right{text-align:left;border-left:none}
+.tl-card{padding:1rem 1.2rem;border-radius:4px;border:1px solid var(--gray-200);background:var(--white);margin-bottom:.5rem}
+.tl-card.museum{border-left:3px solid var(--accent)}
+.tl-card.mpzp{border-left:3px solid #2980b9}
+.tl-card h4{font-size:.9rem;margin-bottom:.3rem;font-weight:600}
+.tl-card.museum h4{color:var(--accent)}
+.tl-card.mpzp h4{color:#2980b9}
+.tl-card p{font-size:.82rem;color:var(--gray-600);line-height:1.5}
+.tl-label{font-size:.7rem;text-transform:uppercase;letter-spacing:2px;font-weight:600;margin-bottom:.5rem}
+.tl-label.museum-label{color:var(--accent)}
+.tl-label.mpzp-label{color:#2980b9}
+.tl-empty{min-height:1px}
+@media(max-width:700px){.dual-timeline-row{grid-template-columns:1fr}.dual-timeline-left{text-align:left;border-right:none}.dual-timeline-center{display:none}.dual-timeline-right{border-left:none}}
 
 .press-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:2rem}
 .press-card{padding:1.8rem;border:1px solid var(--gray-200);border-radius:4px;background:var(--white);transition:box-shadow .3s,transform .3s;text-decoration:none;display:block}
@@ -94,15 +111,25 @@ section{padding:clamp(3rem,6vw,5rem) 2rem}
 .press-card .press-title{font-size:1rem;color:var(--black);font-weight:600;margin-bottom:.4rem;line-height:1.4}
 .press-card .press-source{font-size:.8rem;color:var(--gray-600);margin-bottom:.5rem;font-weight:500}
 .press-card .press-desc{font-size:.85rem;color:var(--gray-600);line-height:1.6;font-weight:300}
+.press-card.verified{border-left:3px solid #27ae60}
+.press-card.verified .press-category::after{content:' ✓';color:#27ae60}
 
 .highlight-box{background:var(--black);color:var(--white);padding:3rem;border-radius:4px;text-align:center;margin:2rem 0}
 .highlight-box .number{font-size:clamp(2.5rem,5vw,3.5rem);font-weight:700;margin-bottom:.5rem}
 .highlight-box p{font-size:1rem;opacity:.85;max-width:600px;margin:0 auto}
+.highlight-box.red{background:var(--accent)}
+
+.opinion-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:2rem}
+.opinion-card{padding:2rem;border:1px solid var(--gray-200);border-radius:4px;background:var(--white);position:relative}
+.opinion-card::before{content:'„';font-size:4rem;font-weight:700;color:var(--gray-200);position:absolute;top:.5rem;left:1rem;line-height:1}
+.opinion-card blockquote{font-size:.95rem;color:var(--gray-600);font-style:italic;padding-left:1rem;margin-bottom:1rem;line-height:1.7}
+.opinion-card .author{font-size:.8rem;color:var(--gray-800);font-weight:600}
+.opinion-card .role{font-size:.75rem;color:var(--gray-400)}
 
 footer{text-align:center;padding:2.5rem 2rem;background:var(--gray-50);border-top:1px solid var(--gray-200)}
 footer p{color:var(--gray-600);font-size:.85rem}
 
-@media(max-width:600px){section{padding:3rem 1.2rem}.stats-grid{grid-template-columns:1fr 1fr}.advantage-list{grid-template-columns:1fr}.press-grid{grid-template-columns:1fr}.timeline{padding-left:1.5rem}.timeline-item{padding-left:1rem}}
+@media(max-width:600px){section{padding:3rem 1.2rem}.stats-grid{grid-template-columns:1fr 1fr}.advantage-list{grid-template-columns:1fr}.press-grid{grid-template-columns:1fr}.opinion-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body class="lang-pl">
@@ -111,11 +138,12 @@ footer p{color:var(--gray-600);font-size:.85rem}
   <div class="logo">🏙️ MPZP WARSZAWA</div>
   <div class="nav-links">
     <ul class="desktop-nav">
-      <li><a href="#stan" class="pl">Stan MPZP</a><a href="#stan" class="en">MPZP Status</a></li>
+      <li><a href="#stan" class="pl">Stan</a><a href="#stan" class="en">Status</a></li>
       <li><a href="#koszty" class="pl">Koszty</a><a href="#koszty" class="en">Costs</a></li>
-      <li><a href="#msn" class="pl">MSN</a><a href="#msn" class="en">MSN</a></li>
+      <li><a href="#versus" class="pl">MPZP vs Muzeum</a><a href="#versus" class="en">MPZP vs Museum</a></li>
+      <li><a href="#timeline" class="pl">Osie czasu</a><a href="#timeline" class="en">Timelines</a></li>
       <li><a href="#konsekwencje" class="pl">Konsekwencje</a><a href="#konsekwencje" class="en">Consequences</a></li>
-      <li><a href="#timeline" class="pl">Oś czasu</a><a href="#timeline" class="en">Timeline</a></li>
+      <li><a href="#opinie" class="pl">Opinie</a><a href="#opinie" class="en">Opinions</a></li>
       <li><a href="#zrodla" class="pl">Źródła</a><a href="#zrodla" class="en">Sources</a></li>
     </ul>
     <button class="lang-btn" onclick="toggleLang()">EN</button>
@@ -127,11 +155,12 @@ footer p{color:var(--gray-600);font-size:.85rem}
 
 <div class="mobile-menu" id="mobileMenu">
   <ul>
-    <li><a href="#stan" onclick="closeMenu()" class="pl">Stan MPZP</a><a href="#stan" onclick="closeMenu()" class="en">MPZP Status</a></li>
+    <li><a href="#stan" onclick="closeMenu()" class="pl">Stan</a><a href="#stan" onclick="closeMenu()" class="en">Status</a></li>
     <li><a href="#koszty" onclick="closeMenu()" class="pl">Koszty</a><a href="#koszty" onclick="closeMenu()" class="en">Costs</a></li>
-    <li><a href="#msn" onclick="closeMenu()" class="pl">MSN</a><a href="#msn" onclick="closeMenu()" class="en">MSN</a></li>
+    <li><a href="#versus" onclick="closeMenu()" class="pl">MPZP vs Muzeum</a><a href="#versus" onclick="closeMenu()" class="en">MPZP vs Museum</a></li>
+    <li><a href="#timeline" onclick="closeMenu()" class="pl">Osie czasu</a><a href="#timeline" onclick="closeMenu()" class="en">Timelines</a></li>
     <li><a href="#konsekwencje" onclick="closeMenu()" class="pl">Konsekwencje</a><a href="#konsekwencje" onclick="closeMenu()" class="en">Consequences</a></li>
-    <li><a href="#timeline" onclick="closeMenu()" class="pl">Oś czasu</a><a href="#timeline" onclick="closeMenu()" class="en">Timeline</a></li>
+    <li><a href="#opinie" onclick="closeMenu()" class="pl">Opinie</a><a href="#opinie" onclick="closeMenu()" class="en">Opinions</a></li>
     <li><a href="#zrodla" onclick="closeMenu()" class="pl">Źródła</a><a href="#zrodla" onclick="closeMenu()" class="en">Sources</a></li>
   </ul>
 </div>
@@ -142,10 +171,10 @@ footer p{color:var(--gray-600);font-size:.85rem}
     <div class="emoji-hero">🏗️</div>
     <h1 class="pl">Warszawa bez planu</h1>
     <h1 class="en">Warsaw without a plan</h1>
-    <div class="subtitle pl">Miasto, które wydaje setki milionów na muzea — ale nie ma planów zagospodarowania przestrzennego</div>
+    <div class="subtitle pl">Miasto, które wydaje setki milionów na muzea — ale nie ma planów zagospodarowania</div>
     <div class="subtitle en">A city that spends hundreds of millions on museums — but has no spatial development plans</div>
-    <p class="tagline pl">Tylko ~40% powierzchni Warszawy jest objęte miejscowymi planami zagospodarowania przestrzennego. Za kwotę wydaną na jedno muzeum można było pokryć planami całe miasto.</p>
-    <p class="tagline en">Only ~40% of Warsaw's area is covered by local spatial development plans. The amount spent on a single museum could have covered the entire city with plans.</p>
+    <p class="tagline pl">Tylko ~40% powierzchni Warszawy jest objęte miejscowymi planami zagospodarowania przestrzennego. Chaos przestrzenny kosztuje Polskę ponad 83 mld zł rocznie. Za kwotę jednego muzeum można było pokryć planami całe miasto.</p>
+    <p class="tagline en">Only ~40% of Warsaw is covered by local spatial development plans. Spatial chaos costs Poland over PLN 83 billion annually. The cost of one museum could have covered the entire city with plans.</p>
   </div>
   <div class="scroll-hint"><span></span></div>
 </section>
@@ -154,28 +183,34 @@ footer p{color:var(--gray-600);font-size:.85rem}
 <section id="stan" class="section-light">
   <div class="container">
     <div class="section-title">
-      <h2 class="pl">📊 Stan pokrycia MPZP w Polsce</h2>
-      <h2 class="en">📊 MPZP Coverage in Poland</h2>
+      <h2 class="pl">📊 Stan pokrycia MPZP</h2>
+      <h2 class="en">📊 MPZP Coverage Status</h2>
       <div class="line"></div>
     </div>
     <div class="stats-grid">
-      <div class="stat-card"><div class="number">~40%</div><div class="label pl">Warszawa — pokrycie MPZP</div><div class="label en">Warsaw — MPZP coverage</div></div>
+      <div class="stat-card highlight"><div class="number">~40%</div><div class="label pl">Warszawa — pokrycie MPZP</div><div class="label en">Warsaw — MPZP coverage</div></div>
       <div class="stat-card"><div class="number">~70%</div><div class="label">Kraków</div></div>
       <div class="stat-card"><div class="number">~60%</div><div class="label">Wrocław</div></div>
       <div class="stat-card"><div class="number">~55%</div><div class="label">Gdańsk</div></div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="number">31,4%</div><div class="label pl">Pokrycie MPZP w skali kraju (2020)</div><div class="label en">National MPZP coverage (2020)</div></div>
+      <div class="stat-card highlight"><div class="number">83 mld zł</div><div class="label pl">Roczny koszt chaosu przestrzennego wg PAN</div><div class="label en">Annual cost of spatial chaos per PAN</div></div>
+      <div class="stat-card"><div class="number">57 252</div><div class="label pl">Planów miejscowych w Polsce (2020)</div><div class="label en">Local plans in Poland (2020)</div></div>
+      <div class="stat-card"><div class="number">2003</div><div class="label pl">Rok uchwalenia ustawy o MPZP</div><div class="label en">Year of current MPZP law</div></div>
     </div>
     <div class="cards">
       <div class="card">
         <h3 class="pl">🏛️ Co to jest MPZP?</h3>
         <h3 class="en">🏛️ What is MPZP?</h3>
-        <p class="pl">Miejscowy Plan Zagospodarowania Przestrzennego (MPZP) to akt prawa miejscowego, który określa co, gdzie i jak można budować. Bez niego obowiązują decyzje o warunkach zabudowy (WZ) — indywidualne, uznaniowe i często chaotyczne.</p>
-        <p class="en">A Local Spatial Development Plan (MPZP) is a local law that defines what, where, and how you can build. Without it, individual zoning decisions (WZ) apply — discretionary, case-by-case, and often chaotic.</p>
+        <p class="pl">Miejscowy Plan Zagospodarowania Przestrzennego — akt prawa miejscowego określający co, gdzie i jak można budować. Bez niego obowiązują decyzje o warunkach zabudowy (WZ) — indywidualne, uznaniowe, często chaotyczne. WZ nie musi być nawet zgodna ze studium gminy.</p>
+        <p class="en">A Local Spatial Development Plan — a local law defining what, where, and how you can build. Without it, individual zoning decisions (WZ) apply — discretionary, case-by-case, often chaotic. WZ decisions don't even have to comply with the municipal study.</p>
       </div>
       <div class="card">
-        <h3 class="pl">⚠️ Warszawa na szarym końcu</h3>
-        <h3 class="en">⚠️ Warsaw at the bottom</h3>
-        <p class="pl">Stolica Polski ma jedno z najniższych pokryć planami miejscowymi wśród dużych miast. Kraków ma prawie dwukrotnie większe pokrycie. Oznacza to, że 60% powierzchni Warszawy jest planowane „na żywioł" — przez decyzje WZ.</p>
-        <p class="en">Poland's capital has one of the lowest plan coverages among major cities. Kraków has nearly double the coverage. This means 60% of Warsaw's area is planned "ad hoc" — through individual WZ decisions.</p>
+        <h3 class="pl">⚠️ Dlaczego Warszawa jest na szarym końcu?</h3>
+        <h3 class="en">⚠️ Why is Warsaw at the bottom?</h3>
+        <p class="pl">Stolica ma jedno z najniższych pokryć planami wśród dużych miast polskich. 60% powierzchni jest zarządzane przez WZ-ki — indywidualne decyzje administracyjne, które nie muszą tworzyć spójnej wizji przestrzeni. NIK wielokrotnie wskazywała na systemowe zaniedbania w planowaniu przestrzennym Warszawy.</p>
+        <p class="en">The capital has one of the lowest plan coverages among major Polish cities. 60% is managed via WZ decisions — individual administrative acts that don't need to form a coherent spatial vision. The Supreme Audit Office (NIK) has repeatedly flagged systemic neglect in Warsaw's spatial planning.</p>
       </div>
     </div>
   </div>
@@ -185,53 +220,8 @@ footer p{color:var(--gray-600);font-size:.85rem}
 <section id="koszty" class="section-alt">
   <div class="container">
     <div class="section-title">
-      <h2 class="pl">💰 Ile kosztuje plan?</h2>
-      <h2 class="en">💰 How much does a plan cost?</h2>
-      <div class="line"></div>
-    </div>
-    <div style="overflow-x:auto">
-      <table class="styled-table">
-        <thead>
-          <tr>
-            <th class="pl">Pozycja</th><th class="en">Item</th>
-            <th class="pl">Koszt</th><th class="en">Cost</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="pl">Jeden MPZP (średni)</td><td class="en">Single MPZP (average)</td>
-            <td class="pl">1–5 mln zł</td><td class="en">PLN 1–5 million</td>
-          </tr>
-          <tr>
-            <td class="pl">Pokrycie planami całej Warszawy</td><td class="en">Full coverage for Warsaw</td>
-            <td class="pl">200–500 mln zł</td><td class="en">PLN 200–500 million</td>
-          </tr>
-          <tr>
-            <td class="pl">Roczny budżet BAiPP</td><td class="en">BAiPP annual budget</td>
-            <td class="pl">~30–50 mln zł</td><td class="en">~PLN 30–50 million</td>
-          </tr>
-          <tr>
-            <td class="pl">Czas uchwalenia jednego MPZP</td><td class="en">Time to adopt one MPZP</td>
-            <td class="pl">2–5 lat</td><td class="en">2–5 years</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="highlight-box">
-      <div class="number pl">200–500 mln zł</div>
-      <div class="number en">PLN 200–500M</div>
-      <p class="pl">Tyle wystarczyłoby, by pokryć planami zagospodarowania przestrzennego całą Warszawę — miasto 1,8 mln mieszkańców, 517 km²</p>
-      <p class="en">That's all it would take to cover all of Warsaw with spatial development plans — a city of 1.8 million people, 517 km²</p>
-    </div>
-  </div>
-</section>
-
-<!-- MSN PORÓWNANIE -->
-<section id="msn" class="section-light">
-  <div class="container">
-    <div class="section-title">
-      <h2 class="pl">🏛️ Muzeum vs Plan miasta</h2>
-      <h2 class="en">🏛️ Museum vs City Plan</h2>
+      <h2 class="pl">💰 Ile kosztuje plan vs muzeum?</h2>
+      <h2 class="en">💰 Plan cost vs museum cost</h2>
       <div class="line"></div>
     </div>
     <div style="overflow-x:auto">
@@ -240,54 +230,281 @@ footer p{color:var(--gray-600);font-size:.85rem}
           <tr>
             <th class="pl">Pozycja</th><th class="en">Item</th>
             <th class="pl">Kwota</th><th class="en">Amount</th>
+            <th class="pl">Uwagi</th><th class="en">Notes</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td class="pl">Budowa Muzeum Sztuki Nowoczesnej</td><td class="en">Museum of Modern Art construction</td>
-            <td><strong>416 mln zł</strong></td>
-          </tr>
-          <tr>
-            <td class="pl">Teatr Rozmaitości (TR Warszawa) — remont</td><td class="en">TR Warszawa theatre — renovation</td>
-            <td><strong>125 mln zł</strong></td>
-          </tr>
-          <tr>
-            <td class="pl">Projekt architektoniczny (Thomas Phifer)</td><td class="en">Architectural design (Thomas Phifer)</td>
-            <td><strong>28 mln zł</strong></td>
-          </tr>
-          <tr style="background:var(--gray-100)">
-            <td class="pl"><strong>RAZEM — jeden kompleks kulturalny</strong></td><td class="en"><strong>TOTAL — one cultural complex</strong></td>
-            <td><strong style="color:var(--black);font-size:1.1rem">~570 mln zł</strong></td>
-          </tr>
+          <tr><td class="pl">Jeden MPZP (średni)</td><td class="en">Single MPZP (average)</td><td>1–5 mln zł</td><td class="pl">Zależy od obszaru i złożoności</td><td class="en">Depends on area and complexity</td></tr>
+          <tr><td class="pl">Pokrycie planami całej Warszawy</td><td class="en">Full coverage for Warsaw</td><td><strong>200–500 mln zł</strong></td><td class="pl">Szacunek dla 517 km²</td><td class="en">Estimate for 517 km²</td></tr>
+          <tr><td class="pl">Roczny budżet BAiPP</td><td class="en">BAiPP annual budget</td><td>~30–50 mln zł</td><td class="pl">Biuro Architektury i Planowania</td><td class="en">Architecture & Planning Bureau</td></tr>
+          <tr><td class="pl">Budowa MSN</td><td class="en">MSN construction</td><td><strong style="color:var(--accent)">416 mln zł</strong></td><td class="pl">Muzeum Sztuki Nowoczesnej</td><td class="en">Museum of Modern Art</td></tr>
+          <tr><td class="pl">Remont TR Warszawa</td><td class="en">TR Warszawa renovation</td><td><strong style="color:var(--accent)">125 mln zł</strong></td><td class="pl">Teatr w kompleksie MSN</td><td class="en">Theatre in MSN complex</td></tr>
+          <tr><td class="pl">Projekt architektoniczny</td><td class="en">Architectural design</td><td><strong style="color:var(--accent)">28 mln zł</strong></td><td class="pl">Thomas Phifer and Partners</td><td class="en">Thomas Phifer and Partners</td></tr>
+          <tr style="background:var(--gray-100)"><td class="pl"><strong>RAZEM — kompleks kulturalny</strong></td><td class="en"><strong>TOTAL — cultural complex</strong></td><td><strong style="color:var(--accent);font-size:1.1rem">~570 mln zł</strong></td><td class="pl">Jeden budynek + teatr</td><td class="en">One building + theatre</td></tr>
         </tbody>
       </table>
     </div>
-    <div class="cards" style="margin-top:2rem">
-      <div class="card" style="border-color:var(--black)">
-        <h3 class="pl">🏛️ Za 570 mln zł Warszawa dostała:</h3>
-        <h3 class="en">🏛️ For PLN 570M Warsaw got:</h3>
+  </div>
+</section>
+
+<!-- MPZP VS MUZEUM -->
+<section id="versus" class="section-light">
+  <div class="container">
+    <div class="section-title">
+      <h2 class="pl">⚖️ MPZP vs Muzeum — co dostała Warszawa?</h2>
+      <h2 class="en">⚖️ MPZP vs Museum — what did Warsaw get?</h2>
+      <div class="line"></div>
+    </div>
+    <div class="cards">
+      <div class="card" style="border-left:3px solid var(--accent)">
+        <h3 class="pl" style="color:var(--accent)">🏛️ Za 570 mln zł Warszawa DOSTAŁA:</h3>
+        <h3 class="en" style="color:var(--accent)">🏛️ For PLN 570M Warsaw GOT:</h3>
         <ul>
-          <li class="pl">Jedno muzeum na pl. Defilad</li><li class="en">One museum on Defilad Square</li>
-          <li class="pl">18 lat od konkursu do otwarcia</li><li class="en">18 years from competition to opening</li>
-          <li class="pl">Wyremontowany teatr</li><li class="en">A renovated theatre</li>
+          <li class="pl">1 muzeum na pl. Defilad (30 000 m²)</li><li class="en">1 museum on Defilad Square (30,000 m²)</li>
+          <li class="pl">1 wyremontowany teatr</li><li class="en">1 renovated theatre</li>
+          <li class="pl">18 lat od konkursu do otwarcia (2006–2024)</li><li class="en">18 years from competition to opening (2006–2024)</li>
+          <li class="pl">2 zerwane umowy z architektami (Kerez, potem Phifer)</li><li class="en">2 broken contracts with architects (Kerez, then Phifer)</li>
+          <li class="pl">Wielokrotne zmiany koncepcji</li><li class="en">Multiple concept changes</li>
         </ul>
       </div>
-      <div class="card" style="border-color:var(--black)">
-        <h3 class="pl">📋 Za 570 mln zł Warszawa mogła dostać:</h3>
-        <h3 class="en">📋 For PLN 570M Warsaw could have got:</h3>
+      <div class="card" style="border-left:3px solid #2980b9">
+        <h3 class="pl" style="color:#2980b9">📋 Za 570 mln zł Warszawa MOGŁA DOSTAĆ:</h3>
+        <h3 class="en" style="color:#2980b9">📋 For PLN 570M Warsaw COULD HAVE GOT:</h3>
         <ul>
-          <li class="pl">Plany zagospodarowania dla CAŁEGO miasta</li><li class="en">Development plans for the ENTIRE city</li>
+          <li class="pl">MPZP dla całego miasta (517 km²)</li><li class="en">Development plans for the entire city (517 km²)</li>
           <li class="pl">Koniec chaosu WZ-ek</li><li class="en">End of WZ decision chaos</li>
-          <li class="pl">Ochrona wartości nieruchomości</li><li class="en">Property value protection</li>
-          <li class="pl">Przewidywalność dla mieszkańców i inwestorów</li><li class="en">Predictability for residents and investors</li>
+          <li class="pl">Ochrona wartości nieruchomości 1,8 mln mieszkańców</li><li class="en">Property value protection for 1.8 million residents</li>
+          <li class="pl">Przewidywalność inwestycyjna na dekady</li><li class="en">Investment predictability for decades</li>
+          <li class="pl">Oszczędność ~83 mld zł/rok na kosztach chaosu (skala krajowa)</li><li class="en">Savings of ~PLN 83B/year in chaos costs (national scale)</li>
+          <li class="pl">I jeszcze zostałoby 70–370 mln zł</li><li class="en">And PLN 70–370M would be left over</li>
         </ul>
+      </div>
+    </div>
+    <div class="highlight-box red" style="margin-top:2rem">
+      <div class="number pl">570 mln zł = 1 muzeum</div>
+      <div class="number en">PLN 570M = 1 museum</div>
+      <p class="pl">Za tę kwotę można było pokryć planami zagospodarowania <strong>całą Warszawę</strong> — i jeszcze zostałoby na budżet BAiPP na kilka lat</p>
+      <p class="en">That amount could have covered <strong>all of Warsaw</strong> with development plans — with years of BAiPP budget left over</p>
+    </div>
+  </div>
+</section>
+
+<!-- DUAL TIMELINE -->
+<section id="timeline" class="section-alt">
+  <div class="container">
+    <div class="section-title">
+      <h2 class="pl">⏳ Dwie osie czasu: Muzeum vs Planowanie</h2>
+      <h2 class="en">⏳ Two timelines: Museum vs Planning</h2>
+      <div class="line"></div>
+    </div>
+    <div style="display:flex;justify-content:center;gap:3rem;margin-bottom:2rem;flex-wrap:wrap">
+      <div><span style="display:inline-block;width:14px;height:14px;background:var(--accent);border-radius:2px;vertical-align:middle;margin-right:.5rem"></span><span class="pl" style="font-size:.85rem;font-weight:600">Muzeum Sztuki Nowoczesnej</span><span class="en" style="font-size:.85rem;font-weight:600">Museum of Modern Art</span></div>
+      <div><span style="display:inline-block;width:14px;height:14px;background:#2980b9;border-radius:2px;vertical-align:middle;margin-right:.5rem"></span><span class="pl" style="font-size:.85rem;font-weight:600">Planowanie przestrzenne / MPZP</span><span class="en" style="font-size:.85rem;font-weight:600">Spatial planning / MPZP</span></div>
+    </div>
+
+    <div class="dual-timeline">
+      <!-- 2003 -->
+      <div class="dual-timeline-row">
+        <div class="dual-timeline-left"><div class="tl-empty"></div></div>
+        <div class="dual-timeline-center"><div class="line-segment"></div><div class="year-badge">2003</div><div class="line-segment"></div></div>
+        <div class="dual-timeline-right">
+          <div class="tl-card mpzp">
+            <h4 class="pl">Ustawa o planowaniu przestrzennym</h4><h4 class="en">Spatial Planning Act</h4>
+            <p class="pl">Nowa ustawa wprowadza obowiązek MPZP. Stare plany wygasają. Pokrycie spada. Warszawa ma ~20% pokrycia.</p>
+            <p class="en">New law introduces MPZP requirement. Old plans expire. Coverage drops. Warsaw at ~20%.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2005 -->
+      <div class="dual-timeline-row">
+        <div class="dual-timeline-left">
+          <div class="tl-card museum">
+            <h4 class="pl">Założenie MSN</h4><h4 class="en">MSN founded</h4>
+            <p class="pl">Muzeum Sztuki Nowoczesnej formalnie powołane. Działa bez stałej siedziby.</p>
+            <p class="en">Museum of Modern Art formally established. Operates without permanent home.</p>
+          </div>
+        </div>
+        <div class="dual-timeline-center"><div class="line-segment"></div><div class="year-badge">2005</div><div class="line-segment"></div></div>
+        <div class="dual-timeline-right">
+          <div class="tl-card mpzp">
+            <h4 class="pl">Pokrycie MPZP: 19% (kraj)</h4><h4 class="en">MPZP coverage: 19% (national)</h4>
+            <p class="pl">29 642 planów w Polsce. Warszawa nadrabia powoli. Deweloperzy budują na WZ-kach.</p>
+            <p class="en">29,642 plans in Poland. Warsaw catches up slowly. Developers build on WZ decisions.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2006 -->
+      <div class="dual-timeline-row">
+        <div class="dual-timeline-left">
+          <div class="tl-card museum">
+            <h4 class="pl">Konkurs architektoniczny</h4><h4 class="en">Architectural competition</h4>
+            <p class="pl">109 projektów. Wygrywa Christian Kerez (Szwajcaria). Budynek 30 000 m² na pl. Defilad.</p>
+            <p class="en">109 entries. Christian Kerez (Switzerland) wins. 30,000 m² building on Defilad Square.</p>
+          </div>
+        </div>
+        <div class="dual-timeline-center"><div class="line-segment"></div><div class="year-badge">2006</div><div class="line-segment"></div></div>
+        <div class="dual-timeline-right">
+          <div class="tl-card mpzp">
+            <h4 class="pl">Pokrycie MPZP: 22% (kraj)</h4><h4 class="en">MPZP coverage: 22% (national)</h4>
+            <p class="pl">31 620 planów. Przyrost ~2000 planów/rok. Warszawa: tempo niedostateczne.</p>
+            <p class="en">31,620 plans. Growth ~2,000 plans/year. Warsaw: insufficient pace.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2008 -->
+      <div class="dual-timeline-row">
+        <div class="dual-timeline-left">
+          <div class="tl-card museum">
+            <h4 class="pl">Podpisanie umowy z Kerezem</h4><h4 class="en">Contract signed with Kerez</h4>
+            <p class="pl">Prezydent HGW podpisuje umowę. Potem — zmiana: doklejenie TR Warszawa do projektu. Opóźnienia.</p>
+            <p class="en">Mayor HGW signs contract. Then — change: TR Warszawa added to design. Delays begin.</p>
+          </div>
+        </div>
+        <div class="dual-timeline-center"><div class="line-segment"></div><div class="year-badge">2008</div><div class="line-segment"></div></div>
+        <div class="dual-timeline-right">
+          <div class="tl-card mpzp">
+            <h4 class="pl">Pokrycie MPZP: 25,6% (kraj)</h4><h4 class="en">MPZP coverage: 25.6% (national)</h4>
+            <p class="pl">Boom deweloperski. Większość inwestycji na WZ-kach. Brak planów = brak kontroli.</p>
+            <p class="en">Developer boom. Most investments on WZ decisions. No plans = no control.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2012 -->
+      <div class="dual-timeline-row">
+        <div class="dual-timeline-left">
+          <div class="tl-card museum">
+            <h4 class="pl">Zerwanie umowy z Kerezem</h4><h4 class="en">Contract with Kerez terminated</h4>
+            <p class="pl">6 lat od konkursu — zero budowy. Miasto zrywa umowę. Stracone lata i pieniądze na projekty.</p>
+            <p class="en">6 years since competition — zero construction. City terminates contract. Years and money lost.</p>
+          </div>
+        </div>
+        <div class="dual-timeline-center"><div class="line-segment"></div><div class="year-badge">2012</div><div class="line-segment"></div></div>
+        <div class="dual-timeline-right">
+          <div class="tl-card mpzp">
+            <h4 class="pl">Pokrycie MPZP: 28% (kraj)</h4><h4 class="en">MPZP coverage: 28% (national)</h4>
+            <p class="pl">41 748 planów. NIK publikuje pierwszy duży raport o chaosie przestrzennym. Alarmujące wnioski.</p>
+            <p class="en">41,748 plans. NIK publishes first major report on spatial chaos. Alarming conclusions.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2014 -->
+      <div class="dual-timeline-row">
+        <div class="dual-timeline-left">
+          <div class="tl-card museum">
+            <h4 class="pl">Nowy architekt: Thomas Phifer</h4><h4 class="en">New architect: Thomas Phifer</h4>
+            <p class="pl">Nowojorska pracownia wygrywa. Honorarium: 28 mln zł. Start od zera — nowy projekt.</p>
+            <p class="en">NYC firm wins. Fee: PLN 28M. Starting over — new design.</p>
+          </div>
+        </div>
+        <div class="dual-timeline-center"><div class="line-segment"></div><div class="year-badge">2014</div><div class="line-segment"></div></div>
+        <div class="dual-timeline-right">
+          <div class="tl-card mpzp">
+            <h4 class="pl">Pokrycie MPZP: 29,2% (kraj)</h4><h4 class="en">MPZP coverage: 29.2% (national)</h4>
+            <p class="pl">45 703 planów. Przyrost zwalnia. Gminy nie mają budżetów ani kadr na nowe plany.</p>
+            <p class="en">45,703 plans. Growth slowing. Municipalities lack budgets and staff for new plans.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2017 -->
+      <div class="dual-timeline-row">
+        <div class="dual-timeline-left">
+          <div class="tl-card museum">
+            <h4 class="pl">Muzeum nad Wisłą (tymczasowe)</h4><h4 class="en">Museum on the Vistula (temporary)</h4>
+            <p class="pl">MSN otwiera tymczasowy pawilon. 11 lat od konkursu — wciąż bez stałej siedziby.</p>
+            <p class="en">MSN opens temporary pavilion. 11 years since competition — still no permanent home.</p>
+          </div>
+        </div>
+        <div class="dual-timeline-center"><div class="line-segment"></div><div class="year-badge">2017</div><div class="line-segment"></div></div>
+        <div class="dual-timeline-right">
+          <div class="tl-card mpzp">
+            <h4 class="pl">Pokrycie MPZP: 30,5% (kraj)</h4><h4 class="en">MPZP coverage: 30.5% (national)</h4>
+            <p class="pl">51 556 planów. PAN wylicza: chaos przestrzenny kosztuje 83 mld zł/rok. Rząd nie reaguje.</p>
+            <p class="en">51,556 plans. PAN calculates: spatial chaos costs PLN 83B/year. Government doesn't react.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2020 -->
+      <div class="dual-timeline-row">
+        <div class="dual-timeline-left">
+          <div class="tl-card museum">
+            <h4 class="pl">Budowa trwa</h4><h4 class="en">Construction ongoing</h4>
+            <p class="pl">WARBUD jako generalny wykonawca. COVID spowalnia prace. Budżet rośnie.</p>
+            <p class="en">WARBUD as general contractor. COVID slows work. Budget grows.</p>
+          </div>
+        </div>
+        <div class="dual-timeline-center"><div class="line-segment"></div><div class="year-badge">2020</div><div class="line-segment"></div></div>
+        <div class="dual-timeline-right">
+          <div class="tl-card mpzp">
+            <h4 class="pl">Pokrycie MPZP: 31,4% (kraj)</h4><h4 class="en">MPZP coverage: 31.4% (national)</h4>
+            <p class="pl">57 252 planów. 17 lat po ustawie — nie ma nawet 1/3 kraju pokrytej planami.</p>
+            <p class="en">57,252 plans. 17 years after the law — not even 1/3 of country covered.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2023 -->
+      <div class="dual-timeline-row">
+        <div class="dual-timeline-left">
+          <div class="tl-card museum">
+            <h4 class="pl">Opóźnienie otwarcia</h4><h4 class="en">Opening delayed</h4>
+            <p class="pl">Planowane otwarcie w 2023 przesunięte. Kolejne opóźnienia.</p>
+            <p class="en">Planned 2023 opening postponed. More delays.</p>
+          </div>
+        </div>
+        <div class="dual-timeline-center"><div class="line-segment"></div><div class="year-badge">2023</div><div class="line-segment"></div></div>
+        <div class="dual-timeline-right">
+          <div class="tl-card mpzp">
+            <h4 class="pl">Reforma planowania przestrzennego</h4><h4 class="en">Spatial planning reform</h4>
+            <p class="pl">Nowelizacja ustawy: obowiązek uchwalenia planów ogólnych do 1.01.2026. Gminy muszą określić OUZ (Obszar Uzupełniania Zabudowy).</p>
+            <p class="en">Law amended: mandatory general plans by 1 Jan 2026. Municipalities must define infill development zones (OUZ).</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2024 -->
+      <div class="dual-timeline-row">
+        <div class="dual-timeline-left">
+          <div class="tl-card museum">
+            <h4 class="pl">🎉 Otwarcie MSN — 25.10.2024</h4><h4 class="en">🎉 MSN opens — 25 Oct 2024</h4>
+            <p class="pl">18 lat od konkursu. 2 architektów. ~570 mln zł. Jedno muzeum na pl. Defilad.</p>
+            <p class="en">18 years since competition. 2 architects. ~PLN 570M. One museum on Defilad Square.</p>
+          </div>
+        </div>
+        <div class="dual-timeline-center"><div class="line-segment"></div><div class="year-badge">2024</div><div class="line-segment"></div></div>
+        <div class="dual-timeline-right">
+          <div class="tl-card mpzp">
+            <h4 class="pl">Warszawa: nadal ~40% pokrycia</h4><h4 class="en">Warsaw: still ~40% coverage</h4>
+            <p class="pl">21 lat po ustawie. Stolica nadal nie ma planów dla 60% swojej powierzchni. Deadline 2026 się zbliża.</p>
+            <p class="en">21 years after the law. Capital still has no plans for 60% of its area. 2026 deadline approaching.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2026 -->
+      <div class="dual-timeline-row">
+        <div class="dual-timeline-left"><div class="tl-empty"></div></div>
+        <div class="dual-timeline-center"><div class="line-segment"></div><div class="year-badge">2026</div><div class="line-segment"></div></div>
+        <div class="dual-timeline-right">
+          <div class="tl-card mpzp" style="border-color:#e74c3c">
+            <h4 class="pl" style="color:#e74c3c">⏰ Deadline: plany ogólne</h4><h4 class="en" style="color:#e74c3c">⏰ Deadline: general plans</h4>
+            <p class="pl">1 stycznia 2026 — obowiązek uchwalenia planów ogólnych przez wszystkie gminy. Bez nich: brak możliwości wydawania WZ-ek. Czy Warszawa zdąży?</p>
+            <p class="en">1 January 2026 — all municipalities must adopt general plans. Without them: no WZ decisions possible. Will Warsaw make it?</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- KONSEKWENCJE -->
-<section id="konsekwencje" class="section-alt">
+<section id="konsekwencje" class="section-light">
   <div class="container">
     <div class="section-title">
       <h2 class="pl">⚡ Konsekwencje braku planów</h2>
@@ -297,101 +514,94 @@ footer p{color:var(--gray-600);font-size:.85rem}
     <div class="advantage-list">
       <div class="advantage-item">
         <div class="icon">🏗️</div>
-        <div>
-          <p><strong class="pl">Chaos urbanistyczny</strong><strong class="en">Urban chaos</strong><br>
-          <span class="pl">Bloki mieszkalne obok domków jednorodzinnych, biurowce w środku osiedli. Brak spójnej wizji przestrzeni.</span>
-          <span class="en">Apartment blocks next to single-family homes, offices in the middle of residential areas. No coherent spatial vision.</span></p>
+        <div><p><strong class="pl">Chaos urbanistyczny</strong><strong class="en">Urban chaos</strong><br>
+          <span class="pl">Bloki obok domków, biurowce w środku osiedli. Brak spójnej wizji miasta. NIK: „obowiązujące przepisy nie zapewniają racjonalnego kształtowania ładu przestrzennego".</span>
+          <span class="en">Blocks next to houses, offices amid residential areas. No coherent vision. NIK: "existing regulations do not ensure rational spatial order".</span></p>
         </div>
       </div>
       <div class="advantage-item">
         <div class="icon">📄</div>
-        <div>
-          <p><strong class="pl">Patologia WZ-ek</strong><strong class="en">WZ decision pathology</strong><br>
-          <span class="pl">Decyzje o warunkach zabudowy wydawane uznaniowo, często sprzeczne z interesem mieszkańców. Każdy może dostać WZ-kę na prawie wszystko.</span>
-          <span class="en">Zoning decisions issued at discretion, often contrary to residents' interests. Anyone can get a WZ for almost anything.</span></p>
+        <div><p><strong class="pl">Patologia WZ-ek</strong><strong class="en">WZ decision pathology</strong><br>
+          <span class="pl">WZ-ki nie muszą być zgodne ze studium gminy. Wydawane uznaniowo, często sprzeczne z interesem mieszkańców. Każdy może dostać WZ-kę na prawie wszystko, w dowolnym miejscu.</span>
+          <span class="en">WZ decisions don't need to comply with municipal study. Issued at discretion, often against residents' interests. Anyone can get a WZ for almost anything, anywhere.</span></p>
         </div>
       </div>
       <div class="advantage-item">
         <div class="icon">🏘️</div>
-        <div>
-          <p><strong class="pl">Deweloperka bez kontroli</strong><strong class="en">Uncontrolled development</strong><br>
-          <span class="pl">Deweloperzy budują maksymalną liczbę mieszkań na minimalnej powierzchni. Brak wymagań dot. zieleni, parkingów, infrastruktury społecznej.</span>
-          <span class="en">Developers build maximum apartments on minimum land. No requirements for greenery, parking, or social infrastructure.</span></p>
+        <div><p><strong class="pl">Deweloperka bez kontroli</strong><strong class="en">Uncontrolled development</strong><br>
+          <span class="pl">Maksymalna liczba mieszkań na minimalnej powierzchni. Brak wymagań dot. zieleni, parkingów, infrastruktury społecznej. „Betonoza" bez hamulca.</span>
+          <span class="en">Maximum apartments on minimum land. No requirements for green space, parking, social infrastructure. "Concrete jungle" without brakes.</span></p>
         </div>
       </div>
       <div class="advantage-item">
         <div class="icon">📉</div>
-        <div>
-          <p><strong class="pl">Utrata wartości dzielnic</strong><strong class="en">Neighborhood value loss</strong><br>
-          <span class="pl">Bez planów nic nie chroni charakteru dzielnicy. Willowa ulica może zostać zabudowana 10-piętrowcem „na WZ-kę".</span>
-          <span class="en">Without plans, nothing protects neighborhood character. A villa street can get a 10-story building "on a WZ decision".</span></p>
+        <div><p><strong class="pl">Utrata wartości nieruchomości</strong><strong class="en">Property value loss</strong><br>
+          <span class="pl">Bez planu nic nie chroni charakteru dzielnicy. Willowa ulica może zostać zabudowana 10-piętrowcem „na WZ-kę". Mieszkańcy tracą — deweloperzy zyskują.</span>
+          <span class="en">Without a plan, nothing protects neighborhood character. A villa street can get a 10-story building. Residents lose — developers win.</span></p>
         </div>
       </div>
       <div class="advantage-item">
         <div class="icon">🚗</div>
-        <div>
-          <p><strong class="pl">Ukryte koszty infrastruktury</strong><strong class="en">Hidden infrastructure costs</strong><br>
-          <span class="pl">Chaotyczna zabudowa wymusza kosztowne doraźne inwestycje w drogi, kanalizację, szkoły. Planowanie „po fakcie" jest 3–5× droższe.</span>
-          <span class="en">Chaotic development forces costly ad-hoc investments in roads, sewage, schools. Planning "after the fact" costs 3–5× more.</span></p>
+        <div><p><strong class="pl">Ukryte koszty infrastruktury</strong><strong class="en">Hidden infrastructure costs</strong><br>
+          <span class="pl">Osiedla bez dróg, kanalizacji, szkół. Gmina musi potem dobudowywać — 3–5× drożej niż planowanie z góry. PAN: 83 mld zł/rok straty krajowe.</span>
+          <span class="en">Estates without roads, sewage, schools. Municipality must retrofit — 3–5× more expensive. PAN: PLN 83B/year national losses.</span></p>
         </div>
       </div>
       <div class="advantage-item">
         <div class="icon">⚖️</div>
-        <div>
-          <p><strong class="pl">Korupcjogenne środowisko</strong><strong class="en">Corruption-prone environment</strong><br>
-          <span class="pl">Uznaniowość WZ-ek tworzy pole do nadużyć. Plan miejscowy jest transparentny — WZ-ka jest uznaniowa.</span>
-          <span class="en">Discretionary WZ decisions create room for abuse. A local plan is transparent — a WZ decision is discretionary.</span></p>
+        <div><p><strong class="pl">Korupcjogenne środowisko</strong><strong class="en">Corruption-prone environment</strong><br>
+          <span class="pl">Uznaniowość WZ-ek = pole do nadużyć. Plan miejscowy jest transparentny i publiczny. WZ-ka jest uznaniowa i indywidualna.</span>
+          <span class="en">Discretionary WZ decisions = room for abuse. A local plan is transparent and public. A WZ decision is discretionary and individual.</span></p>
         </div>
       </div>
+    </div>
+    <div class="highlight-box" style="margin-top:2rem">
+      <div class="number">83 mld zł / rok</div>
+      <p class="pl">Tyle kosztuje Polskę chaos przestrzenny — wg Komitetu Przestrzennego Zagospodarowania Kraju PAN. To więcej niż roczny budżet obronny.</p>
+      <p class="en">That's what spatial chaos costs Poland annually — per the PAN Spatial Planning Committee. That's more than the annual defense budget.</p>
     </div>
   </div>
 </section>
 
-<!-- TIMELINE -->
-<section id="timeline" class="section-light">
+<!-- OPINIE I ANALIZY -->
+<section id="opinie" class="section-alt">
   <div class="container">
     <div class="section-title">
-      <h2 class="pl">⏳ 18 lat — oś czasu MSN vs MPZP</h2>
-      <h2 class="en">⏳ 18 years — MSN vs MPZP timeline</h2>
+      <h2 class="pl">💬 Opinie i analizy</h2>
+      <h2 class="en">💬 Opinions & analysis</h2>
       <div class="line"></div>
     </div>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="year">2006</div>
-        <p class="pl">Międzynarodowy konkurs architektoniczny na MSN. Wygrywa Christian Kerez.</p>
-        <p class="en">International architectural competition for MSN. Christian Kerez wins.</p>
+    <div class="opinion-grid">
+      <div class="opinion-card">
+        <blockquote class="pl">Obowiązujące od 2003 r. przepisy nie zapewniają racjonalnego kształtowania ładu przestrzennego w gminach i ich zrównoważonego rozwoju, a także pozbawiają ten proces kontroli społecznej.</blockquote>
+        <blockquote class="en">Regulations in force since 2003 do not ensure rational spatial order in municipalities or their sustainable development, and deprive this process of social control.</blockquote>
+        <div class="author pl">Najwyższa Izba Kontroli (NIK)</div><div class="author en">Supreme Audit Office (NIK)</div>
+        <div class="role pl">Raport o planowaniu przestrzennym</div><div class="role en">Spatial planning audit report</div>
       </div>
-      <div class="timeline-item">
-        <div class="year">2007–2012</div>
-        <p class="pl">Lata dyskusji o lokalizacji, zmiana koncepcji. Warszawa wciąż nie uchwala planów.</p>
-        <p class="en">Years of debate about location, concept changes. Warsaw still doesn't adopt plans.</p>
+      <div class="opinion-card">
+        <blockquote class="pl">Chaos przestrzenny generuje rocznie ponad 83 mld zł strat. Rozproszenie zabudowy, uszczuplenie terenów zielonych, degradacja krajobrazu — to konsekwencje braku planów.</blockquote>
+        <blockquote class="en">Spatial chaos generates over PLN 83 billion in annual losses. Scattered development, loss of green areas, landscape degradation — these are consequences of missing plans.</blockquote>
+        <div class="author pl">Komitet Przestrzennego Zagospodarowania Kraju PAN</div><div class="author en">PAN Spatial Planning Committee</div>
+        <div class="role pl">Polska Akademia Nauk</div><div class="role en">Polish Academy of Sciences</div>
       </div>
-      <div class="timeline-item">
-        <div class="year">2014</div>
-        <p class="pl">Nowy konkurs. Wygrywa Thomas Phifer and Partners. Koszt samego projektu: 28 mln zł.</p>
-        <p class="en">New competition. Thomas Phifer and Partners wins. Design cost alone: PLN 28M.</p>
+      <div class="opinion-card">
+        <blockquote class="pl">WZ-ki służą interesom inwestorów, nie mieszkańców. Są wydawane uznaniowo i nie muszą być zgodne ze studium gminy. To systemowa luka w prawie, która od 20 lat niszczy polskie miasta.</blockquote>
+        <blockquote class="en">WZ decisions serve investors' interests, not residents'. They are issued at discretion and don't need to comply with the municipal study. This is a systemic legal gap that has been destroying Polish cities for 20 years.</blockquote>
+        <div class="author pl">Eksperci urbanistyki</div><div class="author en">Urban planning experts</div>
+        <div class="role pl">Towarzystwo Urbanistów Polskich</div><div class="role en">Society of Polish Urban Planners</div>
       </div>
-      <div class="timeline-item">
-        <div class="year">2015–2019</div>
-        <p class="pl">Projektowanie, przygotowania. W tym czasie za roczny budżet BAiPP (30–50 mln) uchwalono jedynie kilkanaście planów.</p>
-        <p class="en">Design, preparations. Meanwhile, with BAiPP's annual budget (PLN 30–50M), only a dozen plans were adopted.</p>
-      </div>
-      <div class="timeline-item">
-        <div class="year">2019–2023</div>
-        <p class="pl">Budowa MSN + TR Warszawa. Łączny koszt: ~540 mln zł. Pokrycie Warszawy planami wciąż ~40%.</p>
-        <p class="en">MSN + TR Warszawa construction. Total cost: ~PLN 540M. Warsaw's plan coverage still ~40%.</p>
-      </div>
-      <div class="timeline-item">
-        <div class="year">2024</div>
-        <p class="pl">Otwarcie MSN. 18 lat od konkursu. W tym samym czasie można było uchwalić plany dla całego miasta — i jeszcze zostałyby pieniądze.</p>
-        <p class="en">MSN opens. 18 years since the competition. In the same time, plans for the entire city could have been adopted — with money to spare.</p>
+      <div class="opinion-card">
+        <blockquote class="pl">W Warszawie powstawały osiedla mieszkaniowe na terenach bez dostępu do kanalizacji, dróg i komunikacji publicznej. Koszty doraźnego dobudowywania infrastruktury są 3–5 razy wyższe niż planowanie z góry.</blockquote>
+        <blockquote class="en">In Warsaw, housing estates were built on land without sewage, roads, or public transport access. The cost of ad-hoc infrastructure is 3–5 times higher than upfront planning.</blockquote>
+        <div class="author pl">Analiza kosztów infrastruktury</div><div class="author en">Infrastructure cost analysis</div>
+        <div class="role pl">Na podstawie danych NIK i GUS</div><div class="role en">Based on NIK and GUS data</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- PODSUMOWANIE -->
-<section class="section-alt">
+<section class="section-light">
   <div class="container">
     <div class="section-title">
       <h2 class="pl">🎯 Podsumowanie</h2>
@@ -402,22 +612,22 @@ footer p{color:var(--gray-600);font-size:.85rem}
       <div class="why-card">
         <div class="check">🏛️</div>
         <p class="pl"><strong>570 mln zł</strong> na jeden kompleks kulturalny</p>
-        <p class="en"><strong>PLN 570M</strong> on one cultural complex</p>
+        <p class="en"><strong>PLN 570M</strong> for one cultural complex</p>
       </div>
       <div class="why-card">
         <div class="check">📋</div>
         <p class="pl"><strong>200–500 mln zł</strong> by pokryć planami całą Warszawę</p>
-        <p class="en"><strong>PLN 200–500M</strong> to cover all of Warsaw with plans</p>
+        <p class="en"><strong>PLN 200–500M</strong> to cover all of Warsaw</p>
       </div>
       <div class="why-card">
         <div class="check">⏳</div>
         <p class="pl"><strong>18 lat</strong> budowy muzeum = czas na plany dla całego miasta</p>
-        <p class="en"><strong>18 years</strong> building a museum = time for plans for the entire city</p>
+        <p class="en"><strong>18 years</strong> building a museum = time for citywide plans</p>
       </div>
       <div class="why-card">
-        <div class="check">🏙️</div>
-        <p class="pl"><strong>~60%</strong> Warszawy wciąż bez planu zagospodarowania</p>
-        <p class="en"><strong>~60%</strong> of Warsaw still without a development plan</p>
+        <div class="check">💸</div>
+        <p class="pl"><strong>83 mld zł/rok</strong> kosztuje chaos przestrzenny w Polsce</p>
+        <p class="en"><strong>PLN 83B/year</strong> — cost of spatial chaos in Poland</p>
       </div>
     </div>
     <div class="highlight-box" style="margin-top:3rem">
@@ -428,58 +638,89 @@ footer p{color:var(--gray-600);font-size:.85rem}
 </section>
 
 <!-- ŹRÓDŁA -->
-<section id="zrodla" class="section-light">
+<section id="zrodla" class="section-alt">
   <div class="container">
     <div class="section-title">
-      <h2 class="pl">📚 Źródła</h2>
-      <h2 class="en">📚 Sources</h2>
+      <h2 class="pl">📚 Źródła i materiały</h2>
+      <h2 class="en">📚 Sources & materials</h2>
       <div class="line"></div>
     </div>
     <div class="press-grid">
-      <a href="https://pl.wikipedia.org/wiki/Muzeum_Sztuki_Nowoczesnej_w_Warszawie" target="_blank" rel="noopener" class="press-card">
+      <a href="https://www.nik.gov.pl/aktualnosci/planowanie-i-zagospodarowanie-przestrzenne.html" target="_blank" rel="noopener" class="press-card verified">
+        <div class="press-category">📊 Raport NIK</div>
+        <div class="press-title pl">Nieprecyzyjne przepisy = chaos przestrzenny</div>
+        <div class="press-title en">Imprecise regulations = spatial chaos</div>
+        <div class="press-source">Najwyższa Izba Kontroli</div>
+        <div class="press-desc pl">Kluczowy raport NIK o systemowych problemach planowania przestrzennego. Źródło danych o 83 mld zł rocznych strat i patologii WZ-ek.</div>
+        <div class="press-desc en">Key NIK report on systemic spatial planning problems. Source for PLN 83B annual losses and WZ decision pathology data.</div>
+      </a>
+      <a href="https://pl.wikipedia.org/wiki/Miejscowy_plan_zagospodarowania_przestrzennego" target="_blank" rel="noopener" class="press-card verified">
+        <div class="press-category">📖 Wikipedia</div>
+        <div class="press-title">Miejscowy plan zagospodarowania przestrzennego</div>
+        <div class="press-source">Wikipedia PL</div>
+        <div class="press-desc pl">Kompletne dane statystyczne: liczba planów i pokrycie MPZP w Polsce 2004–2020. Tabela rok po roku.</div>
+        <div class="press-desc en">Complete statistics: plan count and MPZP coverage in Poland 2004–2020. Year-by-year table.</div>
+      </a>
+      <a href="https://pl.wikipedia.org/wiki/Muzeum_Sztuki_Nowoczesnej_w_Warszawie" target="_blank" rel="noopener" class="press-card verified">
         <div class="press-category">📖 Wikipedia</div>
         <div class="press-title">Muzeum Sztuki Nowoczesnej w Warszawie</div>
         <div class="press-source">Wikipedia PL</div>
-        <div class="press-desc pl">Historia budowy, koszty, konkursy architektoniczne MSN na pl. Defilad.</div>
-        <div class="press-desc en">Construction history, costs, MSN architectural competitions at Defilad Square.</div>
+        <div class="press-desc pl">Historia budowy MSN: konkursy (Kerez 2006, Phifer 2014), koszty (416 mln + 125 mln + 28 mln), otwarcie 25.10.2024.</div>
+        <div class="press-desc en">MSN construction history: competitions (Kerez 2006, Phifer 2014), costs (416M + 125M + 28M), opening 25 Oct 2024.</div>
       </a>
-      <a href="https://www.nik.gov.pl/aktualnosci/planowanie-i-zagospodarowanie-przestrzenne.html" target="_blank" rel="noopener" class="press-card">
-        <div class="press-category">📊 Raport</div>
-        <div class="press-title pl">NIK o planowaniu przestrzennym w Polsce</div>
-        <div class="press-title en">NIK report on spatial planning in Poland</div>
-        <div class="press-source">Najwyższa Izba Kontroli</div>
-        <div class="press-desc pl">Kontrole NIK wskazują na systemowe problemy z uchwalaniem planów miejscowych w polskich miastach.</div>
-        <div class="press-desc en">NIK audits point to systemic problems with adopting local plans in Polish cities.</div>
+      <a href="https://www.nik.gov.pl/kontrole/P/16/043/" target="_blank" rel="noopener" class="press-card verified">
+        <div class="press-category">📊 Kontrola NIK</div>
+        <div class="press-title pl">System gospodarowania przestrzenią gminy jako dobrem publicznym</div>
+        <div class="press-title en">Municipal spatial management as a public good</div>
+        <div class="press-source">NIK — P/16/043</div>
+        <div class="press-desc pl">Wyniki kontroli 17 gmin. Ustalenia: brak aktualizacji studiów, plany pokrywają mniej niż 1/3 kraju, WZ-ki jako dominujący instrument.</div>
+        <div class="press-desc en">Audit results of 17 municipalities. Findings: outdated studies, plans cover less than 1/3 of country, WZ as dominant instrument.</div>
       </a>
-      <a href="https://stat.gov.pl/" target="_blank" rel="noopener" class="press-card">
-        <div class="press-category">📊 Dane</div>
-        <div class="press-title pl">Główny Urząd Statystyczny — dane o planowaniu przestrzennym</div>
-        <div class="press-title en">Central Statistical Office — spatial planning data</div>
-        <div class="press-source">GUS</div>
-        <div class="press-desc pl">Statystyki pokrycia planami miejscowymi w miastach Polski.</div>
-        <div class="press-desc en">Statistics on local plan coverage in Polish cities.</div>
+      <a href="https://stat.gov.pl/obszary-tematyczne/infrastruktura-komunalna-nieruchomosci/nieruchomosci-budynki-infrastruktura-komunalna/" target="_blank" rel="noopener" class="press-card verified">
+        <div class="press-category">📊 Dane GUS</div>
+        <div class="press-title pl">Infrastruktura komunalna — nieruchomości</div>
+        <div class="press-title en">Municipal infrastructure — real estate</div>
+        <div class="press-source">Główny Urząd Statystyczny</div>
+        <div class="press-desc pl">Oficjalne statystyki pokrycia planami miejscowymi, wydanych WZ-ek, i infrastruktury komunalnej w miastach Polski.</div>
+        <div class="press-desc en">Official statistics on local plan coverage, WZ decisions issued, and municipal infrastructure in Polish cities.</div>
+      </a>
+      <a href="https://www.pan.pl/" target="_blank" rel="noopener" class="press-card">
+        <div class="press-category">🔬 Badania PAN</div>
+        <div class="press-title pl">Komitet Przestrzennego Zagospodarowania Kraju PAN</div>
+        <div class="press-title en">PAN Spatial Planning Committee</div>
+        <div class="press-source">Polska Akademia Nauk</div>
+        <div class="press-desc pl">Źródło wyliczenia 83 mld zł rocznych strat z chaosu przestrzennego. Publikacje o kosztach rozproszenia zabudowy.</div>
+        <div class="press-desc en">Source of PLN 83B annual chaos losses calculation. Publications on scattered development costs.</div>
       </a>
       <a href="https://architektura.um.warszawa.pl/" target="_blank" rel="noopener" class="press-card">
         <div class="press-category">🏛️ Urząd Miasta</div>
-        <div class="press-title">Biuro Architektury i Planowania Przestrzennego m.st. Warszawy</div>
-        <div class="press-source">BAiPP</div>
-        <div class="press-desc pl">Oficjalna strona biura odpowiedzialnego za planowanie przestrzenne Warszawy, w tym dane o budżecie i uchwalonych planach.</div>
-        <div class="press-desc en">Official site of the office responsible for Warsaw's spatial planning, including budget and adopted plan data.</div>
+        <div class="press-title">BAiPP — Biuro Architektury i Planowania Przestrzennego</div>
+        <div class="press-source">Urząd m.st. Warszawy</div>
+        <div class="press-desc pl">Oficjalne informacje o planowaniu przestrzennym Warszawy, uchwalonych i procedowanych MPZP, mapie planów.</div>
+        <div class="press-desc en">Official Warsaw spatial planning info, adopted and pending MPZPs, plan maps.</div>
       </a>
-      <a href="https://www.theguardian.com/artanddesign/2024/oct/25/museum-of-modern-art-warsaw-thomas-phifer" target="_blank" rel="noopener" class="press-card">
-        <div class="press-category">🌍 Prasa / Press</div>
-        <div class="press-title">Warsaw's Museum of Modern Art finally opens</div>
-        <div class="press-source">The Guardian — Oct 2024</div>
-        <div class="press-desc pl">Relacja z otwarcia MSN — 18 lat od pierwszego konkursu architektonicznego.</div>
-        <div class="press-desc en">Coverage of MSN opening — 18 years after the first architectural competition.</div>
+      <a href="https://www.tup.org.pl/" target="_blank" rel="noopener" class="press-card">
+        <div class="press-category">🏙️ Organizacja</div>
+        <div class="press-title pl">Towarzystwo Urbanistów Polskich</div>
+        <div class="press-title en">Society of Polish Urban Planners</div>
+        <div class="press-source">TUP</div>
+        <div class="press-desc pl">Najstarsza organizacja urbanistyczna w Polsce. Stanowiska i analizy dotyczące planowania przestrzennego i reformy ustawy.</div>
+        <div class="press-desc en">Oldest urban planning organization in Poland. Positions and analyses on spatial planning and law reform.</div>
       </a>
-      <a href="https://urbanistyka.info/" target="_blank" rel="noopener" class="press-card">
-        <div class="press-category">📖 Portal</div>
-        <div class="press-title pl">Urbanistyka.info — portal o planowaniu przestrzennym</div>
-        <div class="press-title en">Urbanistyka.info — spatial planning portal</div>
-        <div class="press-source">urbanistyka.info</div>
-        <div class="press-desc pl">Analizy, dane i komentarze o stanie planowania przestrzennego w polskich miastach.</div>
-        <div class="press-desc en">Analysis, data and commentary on spatial planning in Polish cities.</div>
+      <a href="https://isap.sejm.gov.pl/isap.nsf/DocDetails.xsp?id=WDU20030800717" target="_blank" rel="noopener" class="press-card verified">
+        <div class="press-category">⚖️ Prawo</div>
+        <div class="press-title pl">Ustawa o planowaniu i zagospodarowaniu przestrzennym (2003)</div>
+        <div class="press-title en">Spatial Planning Act (2003)</div>
+        <div class="press-source">ISAP — Sejm RP</div>
+        <div class="press-desc pl">Pełny tekst ustawy z 27 marca 2003 r. — podstawa prawna MPZP, studia, WZ-ki. Z nowelizacją 2023 (plany ogólne do 2026).</div>
+        <div class="press-desc en">Full text of the 27 March 2003 law — legal basis for MPZP, studies, WZ decisions. With 2023 amendment (general plans by 2026).</div>
+      </a>
+      <a href="https://artmuseum.pl/" target="_blank" rel="noopener" class="press-card verified">
+        <div class="press-category">🏛️ MSN</div>
+        <div class="press-title">Muzeum Sztuki Nowoczesnej w Warszawie</div>
+        <div class="press-source">artmuseum.pl</div>
+        <div class="press-desc pl">Oficjalna strona MSN. Informacje o wystawach, historii budynku, i nowej siedzibie przy ul. Marszałkowskiej 103.</div>
+        <div class="press-desc en">Official MSN website. Information on exhibitions, building history, and new HQ at Marszałkowska 103.</div>
       </a>
     </div>
   </div>
@@ -487,9 +728,9 @@ footer p{color:var(--gray-600);font-size:.85rem}
 
 <!-- FOOTER -->
 <footer>
-  <p class="pl" style="font-style:italic;margin-bottom:.5rem">Dane orientacyjne na podstawie źródeł publicznych. Strona ma charakter informacyjno-publicystyczny.</p>
-  <p class="en" style="font-style:italic;margin-bottom:.5rem">Approximate data based on public sources. This page is informational and editorial in nature.</p>
-  <p>© 2025 · Warszawa bez planu</p>
+  <p class="pl" style="font-style:italic;margin-bottom:.5rem">Dane orientacyjne na podstawie źródeł publicznych (NIK, GUS, PAN, Wikipedia). Strona ma charakter informacyjno-publicystyczny.</p>
+  <p class="en" style="font-style:italic;margin-bottom:.5rem">Approximate data based on public sources (NIK, GUS, PAN, Wikipedia). This page is informational and editorial.</p>
+  <p>© 2025 · Warszawa bez planu · <a href="https://github.com/numerika-ai" style="color:var(--gray-600)">numerika-ai</a></p>
 </footer>
 
 <script>
